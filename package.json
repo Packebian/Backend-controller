@@ -1,8 +1,8 @@
 {
   "name": "backend",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "Packebian api",
   "keywords": [],
   "dependencies": {
     "ejs": "2.3.4",
@@ -21,7 +21,8 @@
     "include-all": "^1.0.0",
     "rc": "1.0.1",
     "sails": "~0.12.11",
-    "sails-disk": "~0.10.9"
+    "sails-disk": "~0.10.9",
+    "sails-mysql": "^0.11.5"
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -30,7 +31,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/gattazr/backend.git"
+    "url": "git://github.com/Packebian/Backend-controller.git"
   },
   "author": "gattazr",
   "license": "",
