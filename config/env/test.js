@@ -18,9 +18,8 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    // connection: 'localDiskDb',
-    // migrate: 'drop'
-    connection: 'packebianMysqlServer'
+    connection: 'localDiskDb',
+    migrate: 'drop'
   },
 
   log: {
