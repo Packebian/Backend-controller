@@ -25,7 +25,8 @@ module.exports = {
     email: {
       type: 'string',
       size: 255,
-      unique: true
+      unique: true,
+      email: true
     },
     userlevel: {
       type: 'integer',
