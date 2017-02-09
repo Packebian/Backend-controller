@@ -1,5 +1,5 @@
 var sails = require('sails');
-
+var config = require('../config/env/test');
 
 before(function(done) {
   // Increase the Mocha timeout so that Sails has enough time to lift.

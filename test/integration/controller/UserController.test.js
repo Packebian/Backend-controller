@@ -62,14 +62,14 @@ describe('CONTROLLER user', function() {
         .get('/users/1')
         .set('Accept', 'application/json')
         .expect(200)
-                .end(function(err, res) {
-                  if (err) return done(err);
+        .end(function(err, res) {
+          if (err) return done(err);
 
-                  // TODO: Test if res is a User
-                  res.body.should.be.instanceof(Object).and.not.instanceof(Array);
+          // TODO: Test if res is a User
+          res.body.should.be.instanceof(Object).and.not.instanceof(Array);
 
-                  done();
-                });
+          done();
+        });
     });
   });
 
