@@ -1,16 +1,26 @@
 var sails = require('sails');
 var config = require('../config/env/test');
+var Barrels = require('barrels');
 
 before(function(done) {
   // Increase the Mocha timeout so that Sails has enough time to lift.
-  this.timeout(10000);
+  this.timeout(4000);
 
   sails.lift({
     // configuration for testing purposes
   }, function(err) {
     if (err) return done(err);
-    // here you can load fixtures, etc.
-    done(err, sails);
+
+    // Load fixtures
+    var barrels = new Barrels();
+
+    // Save original objects in `fixtures` variable
+    fixtures = barrels.data;
+
+    // Populate the DB
+    barrels.populate(function(err) {
+      done(err, sails);
+    });
   });
 });
 

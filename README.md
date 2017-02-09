@@ -26,3 +26,4 @@ The modules used for testing are
 - mocha
 - supertest
 - chai
+- Barrel

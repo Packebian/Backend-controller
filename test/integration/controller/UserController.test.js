@@ -8,7 +8,9 @@ chai.should();
  */
 describe('CONTROLLER user', function() {
 
+  /* ************************** */
   /* Set of tests on GET /users */
+  /* ************************** */
   describe('GET /users', function() {
 
     /* GET /users : The response should be a JSON */
@@ -41,7 +43,9 @@ describe('CONTROLLER user', function() {
   });
 
 
+  /* ******************************** */
   /* Set of tests on GET /users/{:id} */
+  /* ******************************** */
   describe('GET /users/{:id}', function() {
 
     /* GET /users/{:id} : The response should be a JSON */

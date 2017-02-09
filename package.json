@@ -37,6 +37,7 @@
   "author": "gattazr",
   "license": "",
   "devDependencies": {
+    "barrel": "^0.1.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "sails": "^0.12.11",
