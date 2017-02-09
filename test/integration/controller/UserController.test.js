@@ -1,5 +1,6 @@
 var request = require('supertest');
-var should = require('should');
+var chai = require('chai');
+chai.should();
 
 /*
  * Tests of the User controller
