@@ -164,4 +164,15 @@ describe('MODEL User', function() {
         .catch(done);
     });
   });
+
+
+  /* ****************************************** */
+  /* Clearing data created during Tests of User */
+  /* ****************************************** */
+  describe('Data clearing', function() {
+    /* Should remove everything that was created during the tests of User */
+    it('should clear all data created during the tests of User', function (done) {
+      done()
+    });
+  });
 });
