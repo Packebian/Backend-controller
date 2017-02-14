@@ -37,10 +37,9 @@
   "author": "gattazr",
   "license": "",
   "devDependencies": {
-    "barrel": "^0.1.0",
+    "barrels": "^1.6.4",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "sails": "^0.12.11",
     "supertest": "^3.0.0"
   }
 }
