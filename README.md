@@ -2,6 +2,7 @@
 
 a [Sails](http://sailsjs.org) application
 
+[![Build Status](https://travis-ci.org/Packebian/Backend-controller.svg?branch=master)](https://travis-ci.org/Packebian/Backend-controller)
 
 ## Prepare environment
 Install dependencies and update the PATH
