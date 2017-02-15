@@ -18,7 +18,8 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'packebianMysqlServer'
+    connection: 'packebianMongodb',
+    migrate: 'safe'
   },
 
   log: {

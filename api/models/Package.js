@@ -1,7 +1,7 @@
 /**
  * Package.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: reprensentation of a linux package
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
@@ -9,21 +9,44 @@ module.exports = {
   tableName: 'Packages',
   attributes: {
     user: {
-      columnName: 'user_id',
       model: 'User',
       required: true
     },
     ticket: {
-      columnName: 'ticket_id',
       model: 'Ticket',
+    },
+    name: {
+      type: 'string',
+      size: 255,
       required: true,
       unique: true
     },
-    infos: {
-      columnName: 'info_id',
-      model: 'Infos',
-      required: true,
-      unique: true
+    maintainer: {
+      type: 'string',
+      size: 255,
+      required: true
+    },
+    architecture: {
+      type: 'string',
+      size: 255,
+      required: true
+    },
+    major: {
+      type: 'string',
+      size: 255
+    },
+    class: {
+      type: 'string',
+      size: 255
+    },
+    description: {
+      type: 'string'
+    },
+    dependencies: {
+      type: 'string'
+    },
+    versions: {
+      type: 'array'
     }
   }
 };
