@@ -1,27 +1,51 @@
 /**
  * Ticket.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: reprensentation of a ticket. A ticket is the request of the creation of a package
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
-
 module.exports = {
   tableName: 'Tickets',
   attributes: {
     user: {
-      columnName: 'user_id',
       model: 'User',
       required: true
-    },
-    infos: {
-      columnName: 'info_id',
-      model: 'Infos',
-      required: true,
-      unique: true
     },
     status: {
       type: 'integer',
       defaultsTo: 0
+    },
+    name: {
+      type: 'string',
+      size: 255,
+      required: true
+    },
+    maintainer: {
+      type: 'string',
+      size: 255,
+      required: true
+    },
+    architecture: {
+      type: 'string',
+      size: 255,
+      required: true
+    },
+    major: {
+      type: 'string',
+      size: 255
+    },
+    class: {
+      type: 'string',
+      size: 255
+    },
+    description: {
+      type: 'string'
+    },
+    dependencies: {
+      type: 'string'
+    },
+    versions: {
+      type: 'array'
     }
   }
 };
