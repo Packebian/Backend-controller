@@ -8,10 +8,6 @@
 module.exports = {
   tableName: 'Builds',
   attributes: {
-    start: {
-      type: 'datetime',
-      required: true
-    },
     version: {
       type: 'string',
       required: true

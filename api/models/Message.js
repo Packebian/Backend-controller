@@ -23,4 +23,17 @@ module.exports = {
       model: 'Ticket'
     }
   },
+  /* Check complex conditions before persisting the Object in the database */
+  beforeValidate : function(values, next) {
+    /* Check the either package or ticket is set */
+    if( values.ticket == undefined && values.package == undefined) {
+      sails.log.info("Creation of Message failed because package or ticket should either be set");
+      next("ERROR : Creation of Message failed because package or ticket should either be set");
+    } else if (values.ticket != undefined && values.package != undefined) {
+      sails.log.info("Creation of Message failed because package and ticket can't be both set");
+      next("ERROR : Creation of Message failed because package and ticket can't be both set");
+    }else{
+      next();
+    }
+  }
 };

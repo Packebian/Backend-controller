@@ -22,4 +22,18 @@ module.exports = {
       defaultsTo: 0
     }
   },
+  /* Check complex conditions before persisting the Object in the database */
+  beforeValidate : function(values, next) {
+    /* Check the user/ticket couple is unique */
+    Vote
+      .findOne({user: values.user, ticket: values.ticket})
+      .exec(function (err, record) {
+        if(record == undefined) {
+          next();
+        } else{
+          sails.log.info("Creation of Vote failed because already exists");
+          next("ERROR : Creation of Vote failed because already exists");
+        }
+      });
+  }
 };
