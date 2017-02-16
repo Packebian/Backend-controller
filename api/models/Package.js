@@ -17,27 +17,22 @@ module.exports = {
     },
     name: {
       type: 'string',
-      size: 255,
       required: true,
       unique: true
     },
     maintainer: {
       type: 'string',
-      size: 255,
       required: true
     },
     architecture: {
       type: 'string',
-      size: 255,
       required: true
     },
     major: {
       type: 'string',
-      size: 255
     },
     class: {
       type: 'string',
-      size: 255
     },
     description: {
       type: 'string'
@@ -47,6 +42,14 @@ module.exports = {
     },
     versions: {
       type: 'array'
+    },
+    builds: {
+      collection: 'Build',
+      via: 'package'
+    },
+    messages: {
+      collection: 'Message',
+      via: 'package'
     }
   }
 };
