@@ -33,7 +33,7 @@ module.exports = {
         .findOne({user: values.user, ticket: values.ticket})
         .then(function (record) {
           if(record != undefined) {
-            return reject("ERROR : Creation of Vote failed because already exists");
+            return reject("the vote already exists");
           }
           resolve();
         })
@@ -46,7 +46,7 @@ module.exports = {
         .findOne({id: values.user})
         .then(function (record) {
           if(record == undefined) {
-            return reject("ERROR : Creation of Vote failed because user doesn't exist");
+            return reject("value user should match an existing user");
           }
           resolve();
         })
@@ -59,7 +59,7 @@ module.exports = {
         .findOne({id: values.ticket})
         .then(function (record) {
           if(record == undefined) {
-            return reject("ERROR : Creation of Vote failed because ticket doesn't exist");
+            return reject("value ticket should match an existing ticket");
           }
           resolve();
         })

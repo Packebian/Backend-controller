@@ -62,7 +62,7 @@ module.exports = {
         .findOne({id: values.user})
         .then(function (record) {
           if(record == undefined) {
-            return reject("ERROR : Creation of Ticket failed because user doesn't exist");
+            return reject("value user should match an existing user");
           }
           resolve();
         })

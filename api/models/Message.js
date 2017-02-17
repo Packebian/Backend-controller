@@ -31,9 +31,9 @@ module.exports = {
     /* Check that either package or ticket is set */
     promises.push(new Promise(function (resolve, reject) {
       if( values.ticket == undefined && values.package == undefined) {
-        return reject("ERROR : Creation of Message failed because package or ticket should either be set");
+        return reject("either package or ticket should be set");
       } else if (values.ticket != undefined && values.package != undefined) {
-        return reject("ERROR : Creation of Message failed because package and ticket can't be both set");
+        return reject("package and ticket can't be both set");
       }
       resolve();
     }));
@@ -45,7 +45,7 @@ module.exports = {
           .findOne({id: values.package})
           .then(function (record) {
             if(record == undefined) {
-              return reject("ERROR : Creation of Message failed because package doesn't exist");
+              return reject("value package should match an existing package");
             }
             resolve();
           })
@@ -62,7 +62,7 @@ module.exports = {
           .findOne({id: values.ticket})
           .then(function (record) {
             if(record == undefined) {
-              return reject("ERROR : Creation of Message failed because ticket doesn't exist");
+              return reject("value ticket should match an existing ticket");
             }
             resolve();
           })

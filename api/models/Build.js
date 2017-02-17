@@ -32,7 +32,7 @@ module.exports = {
         .findOne({id: values.package})
         .then(function (record) {
           if(record == undefined) {
-            return reject("ERROR : Creation of Package failed because package doesn't exist");
+            return reject("value package should match an existing package");
           }
           resolve();
         })
