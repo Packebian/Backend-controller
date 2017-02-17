@@ -50,6 +50,8 @@ module.exports = {
             resolve();
           })
           .catch(function (err) { reject(err) });
+      } else {
+        resolve();
       }
     }));
 
@@ -65,6 +67,8 @@ module.exports = {
             resolve();
           })
           .catch(function (err) { reject(err) });
+      } else {
+        resolve();
       }
     }));
 

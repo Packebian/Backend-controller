@@ -1,3 +1,4 @@
+var Promise = require('bluebird')
 /**
  * Build.js
  *
@@ -20,5 +21,33 @@ module.exports = {
       type: 'string',
       required: true
     }
+  },
+  /* Check complex conditions before persisting the Object in the database */
+  beforeValidate : function(values, next) {
+    var promises = [];
+
+    /* value package should point to an existing package */
+    promises.push(new Promise(function (resolve, reject) {
+      Package
+        .findOne({id: values.package})
+        .then(function (record) {
+          if(record == undefined) {
+            return reject("ERROR : Creation of Package failed because package doesn't exist");
+          }
+          resolve();
+        })
+        .catch(function (err) { reject(err) });
+    }));
+
+    /* Wait for all promises call next if no error */
+    Promise.all(promises)
+      .spread(function(){
+        next();
+      })
+      .catch(function(err){
+        /* At least one promise threw an error */
+        sails.log.info(err);
+        next(err)
+      });
   }
 };
