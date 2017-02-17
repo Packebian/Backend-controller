@@ -1,3 +1,4 @@
+var Promise = require('bluebird')
 /**
  * Vote.js
  *
@@ -24,16 +25,56 @@ module.exports = {
   },
   /* Check complex conditions before persisting the Object in the database */
   beforeValidate : function(values, next) {
+    var promises = [];
+
     /* Check the user/ticket couple is unique */
-    Vote
-      .findOne({user: values.user, ticket: values.ticket})
-      .exec(function (err, record) {
-        if(record == undefined) {
-          next();
-        } else{
-          sails.log.info("Creation of Vote failed because already exists");
-          next("ERROR : Creation of Vote failed because already exists");
-        }
+    promises.push(new Promise(function (resolve, reject) {
+      Vote
+        .findOne({user: values.user, ticket: values.ticket})
+        .then(function (record) {
+          if(record != undefined) {
+            return reject("ERROR : Creation of Vote failed because already exists");
+          }
+          resolve();
+        })
+        .catch(function (err) { reject(err) });
+    }));
+
+    /* value user should point to an existing user */
+    promises.push(new Promise(function (resolve, reject) {
+      User
+        .findOne({id: values.user})
+        .then(function (record) {
+          if(record == undefined) {
+            return reject("ERROR : Creation of Vote failed because user doesn't exist");
+          }
+          resolve();
+        })
+        .catch(function (err) { reject(err) });
+    }));
+
+    /* value ticket should point to an existing ticket */
+    promises.push(new Promise(function (resolve, reject) {
+      Ticket
+        .findOne({id: values.ticket})
+        .then(function (record) {
+          if(record == undefined) {
+            return reject("ERROR : Creation of Vote failed because ticket doesn't exist");
+          }
+          resolve();
+        })
+        .catch(function (err) { reject(err) });
+    }));
+
+    /* Wait for all promises call next if no error */
+    Promise.all(promises)
+      .spread(function(){
+        next();
+      })
+      .catch(function(err){
+        /* At least one promise threw an error */
+        sails.log.info(err);
+        next(err)
       });
   }
 };
