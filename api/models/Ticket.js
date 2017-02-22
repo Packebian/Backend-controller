@@ -50,6 +50,35 @@ module.exports = {
     votes: {
       collection: 'Vote',
       via: 'ticket'
+    },
+    results: function (next) {
+      Vote
+        .find({ticket: this.id})
+        .then(function (records) {
+          var votes = {};
+          votes.upvote = 0;
+          votes.downvote = 0;
+          votes.neutral = 0;
+
+          for (var record of records){
+            switch(record.vote) {
+              case 1:
+                votes.upvote++;
+                break;
+              case 0:
+                votes.neutral++;
+                break;
+              case -1:
+                votes.downvote++;
+                break;
+              default:
+            }
+          }
+          return next(null, votes);
+        })
+        .catch(function(err){
+          return next(err);
+        });
     }
   },
   /* Check complex conditions before persisting the Object in the database */
