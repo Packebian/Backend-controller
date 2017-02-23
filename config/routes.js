@@ -32,10 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -45,5 +41,5 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
+  "GET /tickets/:id/votes/results": {controller: "TicketController", action: "votes"}
 };

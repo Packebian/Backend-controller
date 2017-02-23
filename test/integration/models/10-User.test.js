@@ -2,7 +2,7 @@ var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-data = require('./User.data.js');
+dataUserM = require('./10-User.dataM.js');
 
 /*
  * Tests of the User model
@@ -15,9 +15,9 @@ describe('MODEL User', function() {
   /* ***************************** */
   describe('User.create()', function() {
 
-    /* User.create() : Create a User using a complete JSON */
+    /* User.create() : Create a user using a complete JSON */
     it('should create a user using a full json', function (done) {
-      User.create(data.userFull)
+      User.create(dataUserM.userFull)
         .then(function(res) {
           done();
         })
@@ -26,9 +26,9 @@ describe('MODEL User', function() {
 
     /* User.create() : Create a user using a minimal JSON with only required information */
     it('should create a user using minimal json', function (done) {
-      User.create(data.userMinimal)
+      User.create(dataUserM.userMinimal)
         .then(function(res) {
-          data.userMinimal.id = res.id // Retrieve id to destroy it later
+          dataUserM.userMinimal.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);
@@ -36,7 +36,7 @@ describe('MODEL User', function() {
 
     /* User.create() : Try to create a user using an existing email */
     it('should fail to create a user using an existing email', function (done) {
-      User.create(data.userUsedEmail)
+      User.create(dataUserM.userUsedEmail)
         .then(done)
         .catch(function(err){
           done();
@@ -45,7 +45,7 @@ describe('MODEL User', function() {
 
     /* User.create() : Try to create a user using an existing username */
     it('should fail to create a user using an existing username', function (done) {
-      User.create(data.userUsedUsername)
+      User.create(dataUserM.userUsedUsername)
         .then(done)
         .catch(function(err){
           done();
@@ -54,7 +54,7 @@ describe('MODEL User', function() {
 
     /* User.create() : Try to create a user using a wrong email (bad format) */
     it('should fail to create a user using an wrong email', function (done) {
-      User.create(data.userWrongEmail)
+      User.create(dataUserM.userWrongEmail)
         .then(done)
         .catch(function(err){
           done();
@@ -87,7 +87,7 @@ describe('MODEL User', function() {
 
     /* User.find() : Retrieve a user in a JSON array */
     it('should return a JSON object of a single user', function (done) {
-      User.findOne(data.userMinimal.id)
+      User.findOne(dataUserM.userMinimal.id)
         .then(function(res) {
           // TODO: Test if res is a User
           res.should.be.instanceof(Object).and.not.instanceof(Array);
@@ -102,38 +102,38 @@ describe('MODEL User', function() {
   /* **************************** */
   describe('User.update()', function() {
 
-    /* User.update() : Update a User and retrieve an array of the new User  */
+    /* User.update() : Update a user and retrieve an array of the new user  */
     it('should update a user', function (done) {
-      User.update(data.userFull.id, data.userFullUpdated)
+      User.update(dataUserM.userFull.id, dataUserM.userFullUpdated)
         .then(function(res) {
-          // TODO: Test if res is an array of User
+          // TODO: Test if res is an array of user
           res.should.be.instanceof(Array);
           done();
         })
         .catch(done);
     });
 
-    /* User.update() : Try to update a User giving him an already used email */
+    /* User.update() : Try to update a user giving him an already used email */
     it('should fail to update a user because email is already used', function (done) {
-      User.update(data.userFull.id, data.userUsedEmail)
+      User.update(dataUserM.userFull.id, dataUserM.userUsedEmail)
         .then(done)
         .catch(function(err){
           done();
         });
     });
 
-    /* User.update() : Try to update a User giving him an already used username */
+    /* User.update() : Try to update a user giving him an already used username */
     it('should fail to update a user because username is already used', function (done) {
-      User.update(data.userFull.id, data.userUsedUsername)
+      User.update(dataUserM.userFull.id, dataUserM.userUsedUsername)
         .then(done)
         .catch(function(err){
           done();
         });
     });
 
-    /* User.update() : Try to update a User giving him a wrong email (bad format) */
+    /* User.update() : Try to update a user giving him a wrong email (bad format) */
     it('should fail to update a user because username is already used', function (done) {
-      User.update(data.userFull.id, data.userWrongEmail)
+      User.update(dataUserM.userFull.id, dataUserM.userWrongEmail)
         .then(done)
         .catch(function(err){
           done();
@@ -146,10 +146,12 @@ describe('MODEL User', function() {
   /* ****************************** */
   describe('User.Destroy()', function() {
 
-    /* User.delete(id) : Delete a single user */
+    /* User.destroy(id) : Delete a single user */
     it('should destroy a user', function (done) {
-      User.destroy(data.userFull.id)
+      User.destroy(dataUserM.userFull.id)
         .then(function(res) {
+          res.should.be.instanceof(Array);
+          res.length.should.be.equal(1);
           done();
         })
         .catch(done);
@@ -157,8 +159,9 @@ describe('MODEL User', function() {
 
     /* User.destroy([id..]) : Delete serveral users */
     it('should destroy several users', function (done) {
-      User.destroy({id : [ data.userMinimal.id ]})
+      User.destroy({id : [ dataUserM.userMinimal.id ]})
         .then(function(res) {
+          res.should.be.instanceof(Array);
           done();
         })
         .catch(done);
@@ -166,12 +169,12 @@ describe('MODEL User', function() {
   });
 
 
-  /* ****************************************** */
+  /* ******************************************* */
   /* Clearing data created during Tests of User */
   /* ****************************************** */
-  describe('Data clearing', function() {
+  describe('data clearing', function() {
     /* Should remove everything that was created during the tests of User */
-    it('should clear all data created during the tests of User', function (done) {
+    it('should clear all data created during the tests of user', function (done) {
       done()
     });
   });

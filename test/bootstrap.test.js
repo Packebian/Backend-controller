@@ -6,9 +6,7 @@ before(function(done) {
   // Increase the Mocha timeout so that Sails has enough time to lift.
   this.timeout(4000);
 
-  sails.lift({
-    // configuration for testing purposes
-  }, function(err) {
+  sails.lift(config, function(err) {
     if (err) return done(err);
 
     // Load fixtures
@@ -18,13 +16,17 @@ before(function(done) {
     fixtures = barrels.data;
 
     // Populate the DB
-    barrels.populate(function(err) {
-      done(err, sails);
-    });
+    barrels.populate(
+      ['user', 'ticket', 'vote', 'package', 'build'],
+      function(err) {
+        if (err) return done(err);
+        done(err, sails);
+      }
+    );
   });
 });
 
 after(function(done) {
-  // here you can clear fixtures, etc.
+  console.log(); // Skip a line before displaying Sails lowering logs
   sails.lower(done);
 });

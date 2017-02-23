@@ -1,42 +1,42 @@
 [
   {
-		"id": 1,
-		"username": "nnichols",
-		"email": "naida@nichols.net",
-		"firstname": "Naida",
-		"lastname": "NICHOLS",
-		"userlevel": 2
-	},
-	{
-		"id": 2,
-		"username": "bsavage",
-		"email": "blaze.savage@lectus.edu",
-		"firstname": "Blaze",
-		"lastname": "SAVAGE",
-		"userlevel": 1
-	},
-	{
-		"id": 3,
-		"username": "smorrow",
-		"email": "skyler-morrow@mi6.uk",
-		"firstname": "Skyler",
-		"lastname": "MORROW",
-		"userlevel": 1
-	},
-	{
-		"id": 4,
-		"username": "dsaunders",
-		"email": "demetrius.saunders@states.gouv",
-		"firstname": "Demetrius",
-		"lastname": "SAUNDERS",
-		"userlevel": 0
-	},
-	{
-		"id": 5,
-		"username": "aburks",
-		"email": "aburks@aol.com",
-		"firstname": "Asher",
-		"lastname": "BURKS",
-		"userlevel": 0
-	}
+    "id": 1,
+    "username": "nnichols",
+    "email": "naida@nichols.net",
+    "firstname": "Naida",
+    "lastname": "NICHOLS",
+    "userlevel": 2
+  },
+  {
+    "id": 2,
+    "username": "bsavage",
+    "email": "blaze.savage@lectus.edu",
+    "firstname": "Blaze",
+    "lastname": "SAVAGE",
+    "userlevel": 1
+  },
+  {
+    "id": 3,
+    "username": "smorrow",
+    "email": "skyler-morrow@mi6.uk",
+    "firstname": "Skyler",
+    "lastname": "MORROW",
+    "userlevel": 1
+  },
+  {
+    "id": 4,
+    "username": "dsaunders",
+    "email": "demetrius.saunders@states.gouv",
+    "firstname": "Demetrius",
+    "lastname": "SAUNDERS",
+    "userlevel": 0
+  },
+  {
+    "id": 5,
+    "username": "aburks",
+    "email": "aburks@aol.com",
+    "firstname": "Asher",
+    "lastname": "BURKS",
+    "userlevel": 0
+  }
 ]
