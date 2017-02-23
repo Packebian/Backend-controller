@@ -2,7 +2,7 @@ var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-data = require('./User.data.js');
+dataUserC = require('./User.dataC.js');
 
 /*
  * Tests of the User controller
@@ -20,7 +20,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
-        .send(data.userFull)
+        .send(dataUserC.userFull)
         .expect(201)
         .end(function(err, res) {
           if (err) return done(err);
@@ -37,7 +37,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
-        .send(data.userMinimal)
+        .send(dataUserC.userMinimal)
         .expect(201)
         .end(function(err, res) {
           if (err) return done(err);
@@ -45,7 +45,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object);
 
-          data.userMinimal.id = res.body.id // Retrieve id to destroy it later
+          dataUserC.userMinimal.id = res.body.id // Retrieve id to destroy it later
 
           done();
         });
@@ -56,7 +56,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
-        .send(data.userUsedEmail)
+        .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -69,7 +69,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
-        .send(data.userUsedUsername)
+        .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -83,7 +83,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
-        .send(data.userWrongEmail)
+        .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -139,7 +139,7 @@ describe('CONTROLLER user', function() {
     /* GET /users/{:id} : The returned JSON should be a user */
     it('should return a JSON of a user with the id {:id}', function(done) {
       request(sails.hooks.http.app)
-        .get('/users/' + data.userFull.id)
+        .get('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
         .expect(200)
         .end(function(err, res) {
@@ -161,9 +161,9 @@ describe('CONTROLLER user', function() {
     /* PUT /users/{:id} : Update a User and retrieve an array of the new User  */
     it('should update a user', function (done) {
       request(sails.hooks.http.app)
-        .put('/users/' + data.userFull.id)
+        .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
-        .send(data.userFullUpdated)
+        .send(dataUserC.userFullUpdated)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -178,9 +178,9 @@ describe('CONTROLLER user', function() {
     /* PUT /users/{:id} : Try to update a User giving him an already used email */
     it('should fail to update a user because email is already used', function (done) {
       request(sails.hooks.http.app)
-        .put('/users/' + data.userFull.id)
+        .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
-        .send(data.userUsedEmail)
+        .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -191,9 +191,9 @@ describe('CONTROLLER user', function() {
     /* PUT /users/{:id} : Try to update a User giving him an already used username */
     it('should fail to update a user because username is already used', function (done) {
       request(sails.hooks.http.app)
-        .put('/users/' + data.userFull.id)
+        .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
-        .send(data.userUsedUsername)
+        .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -204,9 +204,9 @@ describe('CONTROLLER user', function() {
     /* PUT /users/{:id} : Try to update a User giving him a wrong email (bad format) */
     it('should fail to update a user because username is already used', function (done) {
       request(sails.hooks.http.app)
-        .put('/users/' + data.userFull.id)
+        .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
-        .send(data.userWrongEmail)
+        .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
@@ -223,7 +223,7 @@ describe('CONTROLLER user', function() {
     /* DELETE /users/{:id} : Delete a single user */
     it('should destroy a user', function (done) {
       request(sails.hooks.http.app)
-        .delete('/users/' + data.userFull.id)
+        .delete('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
         .expect(200)
         .end(function(err, res) {
@@ -235,13 +235,12 @@ describe('CONTROLLER user', function() {
 
 
   /* ******************************************** */
-  /* Clearing data created during Tests of /users */
+  /* Clearing dataUserC created during Tests of /users */
   /* ******************************************** */
-  describe('Data clearing', function() {
+  describe('dataUserC clearing', function() {
     /* Should remove everything that was created during the tests of /users */
-    it('should clear all data created during the tests of /users', function (done) {
-      console.log(data.userMinimal.id);
-      User.destroy({id : [ data.userMinimal.id ]})
+    it('should clear all dataUserC created during the tests of /users', function (done) {
+      User.destroy({id : [ dataUserC.userMinimal.id ]})
         .then(function(res) {
           done();
         })
