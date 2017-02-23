@@ -27,17 +27,19 @@ module.exports = {
     var promises = [];
 
     /* value package should point to an existing package */
-    promises.push(new Promise(function (resolve, reject) {
-      Package
-        .findOne({id: values.package})
-        .then(function (record) {
-          if(record == undefined) {
-            return reject("value package should match an existing package");
-          }
-          resolve();
-        })
-        .catch(function (err) { reject(err) });
-    }));
+    if(values.package != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
+        Package
+          .findOne({id: values.package})
+          .then(function (record) {
+            if(record == undefined) {
+              return reject("value package should match an existing package");
+            }
+            resolve();
+          })
+          .catch(function (err) { reject(err) });
+      }));
+    }
 
     /* Wait for all promises call next if no error */
     Promise.all(promises)

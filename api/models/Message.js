@@ -25,7 +25,7 @@ module.exports = {
     }
   },
   /* Check complex conditions before persisting the Object in the database */
-  beforeValidate : function(values, next) {
+  beforeCreate : function(values, next) {
     var promises = [];
 
     /* Check that either package or ticket is set */
@@ -38,9 +38,25 @@ module.exports = {
       resolve();
     }));
 
+    /* Wait for all promises call next if no error */
+    Promise.all(promises)
+      .spread(function(){
+        next();
+      })
+      .catch(function(err){
+        /* At least one promise threw an error */
+        sails.log.info(err);
+        next(err)
+      });
+
+  },
+  /* Check complex conditions before persisting the Object in the database */
+  beforeValidate : function(values, next) {
+    var promises = [];
+
     /* If value package is set, it should point to an existing package */
-    promises.push(new Promise(function (resolve, reject) {
-      if(values.package != undefined) {
+    if(values.package != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
         Package
           .findOne({id: values.package})
           .then(function (record) {
@@ -50,14 +66,12 @@ module.exports = {
             resolve();
           })
           .catch(function (err) { reject(err) });
-      } else {
-        resolve();
-      }
-    }));
+      }));
+    }
 
     /* If value ticket is set, it should point to an existing ticket */
-    promises.push(new Promise(function (resolve, reject) {
-      if(values.ticket != undefined) {
+    if(values.ticket != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
         Ticket
           .findOne({id: values.ticket})
           .then(function (record) {
@@ -67,10 +81,8 @@ module.exports = {
             resolve();
           })
           .catch(function (err) { reject(err) });
-      } else {
-        resolve();
-      }
-    }));
+      }));
+    }
 
     /* Wait for all promises call next if no error */
     Promise.all(promises)

@@ -58,21 +58,23 @@ module.exports = {
     var promises = [];
 
     /* value user should point to an existing user */
-    promises.push(new Promise(function (resolve, reject) {
-      User
-        .findOne({id: values.user})
-        .then(function (record) {
-          if(record == undefined) {
-            return reject("value user should match an existing user");
-          }
-          resolve();
-        })
-        .catch(function (err) { reject(err) });
-    }));
+    if(values.user != undefined){
+      promises.push(new Promise(function (resolve, reject) {
+        User
+          .findOne({id: values.user})
+          .then(function (record) {
+            if(record == undefined) {
+              return reject("value user should match an existing user");
+            }
+            resolve();
+          })
+          .catch(function (err) { reject(err) });
+      }));
+    }
 
     /* if it is defined, value ticket should point to an existing ticket */
-    promises.push(new Promise(function (resolve, reject) {
-      if(values.ticket != undefined){
+    if(values.ticket != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
         Ticket
           .findOne({id: values.ticket})
           .then(function (record) {
@@ -82,10 +84,8 @@ module.exports = {
             resolve();
           })
           .catch(function (err) { reject(err) });
-      } else {
-        resolve();
-      }
-    }));
+      }));
+    }
 
     /* Wait for all promises call next if no error */
     Promise.all(promises)

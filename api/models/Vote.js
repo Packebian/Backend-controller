@@ -41,30 +41,34 @@ module.exports = {
     }));
 
     /* value user should point to an existing user */
-    promises.push(new Promise(function (resolve, reject) {
-      User
-        .findOne({id: values.user})
-        .then(function (record) {
-          if(record == undefined) {
-            return reject("value user should match an existing user");
-          }
-          resolve();
-        })
-        .catch(function (err) { reject(err) });
-    }));
+    if(values.user != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
+        User
+          .findOne({id: values.user})
+          .then(function (record) {
+            if(record == undefined) {
+              return reject("value user should match an existing user");
+            }
+            resolve();
+          })
+          .catch(function (err) { reject(err) });
+      }));
+    }
 
     /* value ticket should point to an existing ticket */
-    promises.push(new Promise(function (resolve, reject) {
-      Ticket
-        .findOne({id: values.ticket})
-        .then(function (record) {
-          if(record == undefined) {
-            return reject("value ticket should match an existing ticket");
-          }
-          resolve();
-        })
-        .catch(function (err) { reject(err) });
-    }));
+    if(values.ticket != undefined) {
+      promises.push(new Promise(function (resolve, reject) {
+        Ticket
+          .findOne({id: values.ticket})
+          .then(function (record) {
+            if(record == undefined) {
+              return reject("value ticket should match an existing ticket");
+            }
+            resolve();
+          })
+          .catch(function (err) { reject(err) });
+      }));
+    }
 
     /* Wait for all promises call next if no error */
     Promise.all(promises)
