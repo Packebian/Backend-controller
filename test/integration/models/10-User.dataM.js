@@ -35,5 +35,4 @@ module.exports = {
     username : "janedoe",
     email : "janedoe.com"
   }
-
 }

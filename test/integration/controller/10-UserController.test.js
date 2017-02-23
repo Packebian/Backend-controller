@@ -2,7 +2,7 @@ var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataUserC = require('./User.dataC.js');
+dataUserC = require('./10-User.dataC.js');
 
 /*
  * Tests of the User controller
@@ -237,9 +237,9 @@ describe('CONTROLLER user', function() {
   /* ******************************************** */
   /* Clearing dataUserC created during Tests of /users */
   /* ******************************************** */
-  describe('dataUserC clearing', function() {
+  describe('data clearing', function() {
     /* Should remove everything that was created during the tests of /users */
-    it('should clear all dataUserC created during the tests of /users', function (done) {
+    it('should clear all data created during the tests of /users', function (done) {
       User.destroy({id : [ dataUserC.userMinimal.id ]})
         .then(function(res) {
           done();

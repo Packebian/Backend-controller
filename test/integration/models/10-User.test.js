@@ -2,7 +2,7 @@ var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataUserM = require('./User.dataM.js');
+dataUserM = require('./10-User.dataM.js');
 
 /*
  * Tests of the User model
@@ -15,7 +15,7 @@ describe('MODEL User', function() {
   /* ***************************** */
   describe('User.create()', function() {
 
-    /* User.create() : Create a User using a complete JSON */
+    /* User.create() : Create a user using a complete JSON */
     it('should create a user using a full json', function (done) {
       User.create(dataUserM.userFull)
         .then(function(res) {
@@ -102,18 +102,18 @@ describe('MODEL User', function() {
   /* **************************** */
   describe('User.update()', function() {
 
-    /* User.update() : Update a User and retrieve an array of the new User  */
+    /* User.update() : Update a user and retrieve an array of the new user  */
     it('should update a user', function (done) {
       User.update(dataUserM.userFull.id, dataUserM.userFullUpdated)
         .then(function(res) {
-          // TODO: Test if res is an array of User
+          // TODO: Test if res is an array of user
           res.should.be.instanceof(Array);
           done();
         })
         .catch(done);
     });
 
-    /* User.update() : Try to update a User giving him an already used email */
+    /* User.update() : Try to update a user giving him an already used email */
     it('should fail to update a user because email is already used', function (done) {
       User.update(dataUserM.userFull.id, dataUserM.userUsedEmail)
         .then(done)
@@ -122,7 +122,7 @@ describe('MODEL User', function() {
         });
     });
 
-    /* User.update() : Try to update a User giving him an already used username */
+    /* User.update() : Try to update a user giving him an already used username */
     it('should fail to update a user because username is already used', function (done) {
       User.update(dataUserM.userFull.id, dataUserM.userUsedUsername)
         .then(done)
@@ -131,7 +131,7 @@ describe('MODEL User', function() {
         });
     });
 
-    /* User.update() : Try to update a User giving him a wrong email (bad format) */
+    /* User.update() : Try to update a user giving him a wrong email (bad format) */
     it('should fail to update a user because username is already used', function (done) {
       User.update(dataUserM.userFull.id, dataUserM.userWrongEmail)
         .then(done)
@@ -146,10 +146,12 @@ describe('MODEL User', function() {
   /* ****************************** */
   describe('User.Destroy()', function() {
 
-    /* User.delete(id) : Delete a single user */
+    /* User.destroy(id) : Delete a single user */
     it('should destroy a user', function (done) {
       User.destroy(dataUserM.userFull.id)
         .then(function(res) {
+          res.should.be.instanceof(Array);
+          res.length.should.be.equal(1);
           done();
         })
         .catch(done);
@@ -159,6 +161,7 @@ describe('MODEL User', function() {
     it('should destroy several users', function (done) {
       User.destroy({id : [ dataUserM.userMinimal.id ]})
         .then(function(res) {
+          res.should.be.instanceof(Array);
           done();
         })
         .catch(done);
@@ -166,12 +169,12 @@ describe('MODEL User', function() {
   });
 
 
+  /* ******************************************* */
+  /* Clearing data created during Tests of User */
   /* ****************************************** */
-  /* Clearing dataUserM created during Tests of User */
-  /* ****************************************** */
-  describe('dataUserM clearing', function() {
+  describe('data clearing', function() {
     /* Should remove everything that was created during the tests of User */
-    it('should clear all dataUserM created during the tests of User', function (done) {
+    it('should clear all data created during the tests of user', function (done) {
       done()
     });
   });

@@ -7,7 +7,7 @@ module.exports = {
     user: 1,
     status: 0,
     name: "processim",
-    maintainer: "vincent.danjean@imag.fr",
+    maintainer: "naida@nichols.net",
     architecture: "all",
     major: "RICM3",
     class: "ALM",
@@ -19,7 +19,7 @@ module.exports = {
   ticketMinimal : {
     user: 2,
     name: "processim",
-    maintainer: "vincent.danjean@imag.fr",
+    maintainer: "naida@nichols.net",
     architecture: "all"
   },
 
@@ -27,5 +27,4 @@ module.exports = {
     name : "processimd",
     status : 1
   }
-
 }

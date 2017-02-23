@@ -2,7 +2,7 @@ var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataTicketM = require('./Ticket.dataM.js');
+dataTicketM = require('./20-Ticket.dataM.js');
 
 /*
  * Tests of the Ticket model
@@ -15,7 +15,7 @@ describe('MODEL Ticket', function() {
   /* ******************************* */
   describe('Ticket.create()', function() {
 
-    /* Ticket.create() : Create a Ticket using a complete JSON */
+    /* Ticket.create() : Create a ticket using a complete JSON */
     it('should create a ticket using a full json', function (done) {
       Ticket.create(dataTicketM.ticketFull)
         .then(function(res) {
@@ -24,8 +24,8 @@ describe('MODEL Ticket', function() {
         .catch(done);
     });
 
-    /* Ticket.create() : Create a Ticket using a minimal JSON with only required information */
-    it('should create a user using minimal json', function (done) {
+    /* Ticket.create() : Create a ticket using a minimal JSON with only required information */
+    it('should create a ticket using minimal json', function (done) {
       Ticket.create(dataTicketM.ticketMinimal)
         .then(function(res) {
           dataTicketM.ticketMinimal.id = res.id // Retrieve id to destroy it later
@@ -58,11 +58,11 @@ describe('MODEL Ticket', function() {
   /* ******************************** */
   describe('Ticket.findOne()', function() {
 
-    /* Ticket.find() : Retrieve a Ticket in a JSON array */
+    /* Ticket.find() : Retrieve a ticket in a JSON array */
     it('should return a JSON object of a single ticket', function (done) {
       Ticket.findOne(dataTicketM.ticketMinimal.id)
         .then(function(res) {
-          // TODO: Test if res is a User
+          // TODO: Test if res is a ticket
           res.should.be.instanceof(Object).and.not.instanceof(Array);
           done();
         })
@@ -75,7 +75,7 @@ describe('MODEL Ticket', function() {
   /* ****************************** */
   describe('Ticket.update()', function() {
 
-    /* Ticket.update() : Update a Ticket and retrieve an array of the new Ticket  */
+    /* Ticket.update() : Update a ticket and retrieve an array of the new ticket  */
     it('should update a ticket', function (done) {
       Ticket.update(dataTicketM.ticketFull.id, dataTicketM.ticketFullUpdated)
         .then(function(res) {
@@ -96,15 +96,18 @@ describe('MODEL Ticket', function() {
     it('should destroy a ticket', function (done) {
       Ticket.destroy(dataTicketM.ticketFull.id)
         .then(function(res) {
+          res.should.be.instanceof(Array);
+          res.length.should.be.equal(1);
           done();
         })
         .catch(done);
     });
 
-    /* User.destroy([id..]) : Delete several ticket */
+    /* Ticket.destroy([id..]) : Delete several ticket */
     it('should destroy several tickets', function (done) {
       Ticket.destroy({id : [ dataTicketM.ticketMinimal.id ]})
         .then(function(res) {
+          res.should.be.instanceof(Array);
           done();
         })
         .catch(done);
@@ -113,11 +116,11 @@ describe('MODEL Ticket', function() {
 
 
   /* ******************************************** */
-  /* Clearing dataTicketM created during Tests of Ticket */
+  /* Clearing data created during Tests of Ticket */
   /* ******************************************** */
-  describe('dataTicketM clearing', function() {
-    /* Should remove everything that was created during the tests of User */
-    it('should clear all dataTicketM created during the tests of Ticket', function (done) {
+  describe('data clearing', function() {
+    /* Should remove everything that was created during the tests of ticket */
+    it('should clear all data created during the tests of ticket', function (done) {
       done();
     });
   });
