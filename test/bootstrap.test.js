@@ -16,9 +16,13 @@ before(function(done) {
     fixtures = barrels.data;
 
     // Populate the DB
-    barrels.populate(function(err) {
-      done(err, sails);
-    });
+    barrels.populate(
+      ['user', 'ticket', 'vote', 'package', 'build'],
+      function(err) {
+        if (err) return done(err);
+        done(err, sails);
+      }
+    );
   });
 });
 

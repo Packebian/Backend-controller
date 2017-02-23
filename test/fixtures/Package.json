@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "ticket": 1,
+    "user": 1,
+    "status": 1,
+    "name": "processim",
+    "maintainer": "naida@nichols.net",
+    "architecture": "all",
+    "major": "RICM3",
+    "class": "ALM",
+    "description": "Code you processor",
+    "dependencies": "gcc",
+    "versions": ["1.0", "1.1", "1.2"]
+  },
+  {
+    "id": 2,
+    "ticket": 3,
+    "user": 5,
+    "name": "eclipse",
+    "maintainer": "aburks@aol.com",
+    "architecture": "all",
+    "major": "RICM3",
+    "class": "AOO",
+    "description": "Java IDE",
+    "dependencies": "java",
+    "versions": ["4", "5", "6"]
+  },
+  {
+    "id": 3,
+    "user": 5,
+    "name": "wireshark",
+    "maintainer": "skyler-morrow@mi6.uk",
+    "architecture": "all",
+    "major": "RICM",
+    "class": "",
+    "description": "Network sniffer",
+    "dependencies": "java",
+    "versions": ["2.2.4"]
+  }
+]
