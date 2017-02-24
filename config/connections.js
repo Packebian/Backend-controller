@@ -58,11 +58,11 @@ module.exports.connections = {
   ***************************************************************************/
   packebianMongodb: {
     adapter: 'sails-mongo',
-    host: 'mongodb',
-    port: 27017,
-    user: 'packebian', //optional
-    password: 'packebian123', //optional
-    database: 'packebian' //optional
+    host: process.env.MONGO_HOST,
+    port: process.env.MONGO_PORT,
+    database: process.env.MONGO_DB,
+    user: process.env.MONGO_USER,
+    password: process.env.MONGO_PASS
   },
 
   /***************************************************************************
