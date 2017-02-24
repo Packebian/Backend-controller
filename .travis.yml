@@ -17,11 +17,11 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker build -t packebian/backend-controller:stable .
+      docker build -t packebian/backend-controller:stable . ;
       docker push packebian/backend-controller:stable;
     fi
   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
-      docker build -t packebian/backend-controller:latest .
+      docker build -t packebian/backend-controller:latest . ;
       docker push packebian/backend-controller:latest;
     fi
 
