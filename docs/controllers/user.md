@@ -10,23 +10,16 @@ Get a list of users.
 + Response 500 (application/json)
 
 ### Create New User [POST]
-Create a new User
+Create a new User.
 
 + Request with body (application/json)
 
-    + Body
+    + Attributes (UserCreate)
 
-            {
-                "username": "nnichols",
-                "email": "naida@nichols.net",
-                "firstname": "Naida",
-                "lastname": "NICHOLS",
-                "userlevel": 0
-            }
 
 + Response 201
 
-    + Attributes (User)
+    + Attributes (UserFull)
 
 + Response 500 (application/json)
 
@@ -35,35 +28,27 @@ Create a new User
 
 + Parameters
 
-    + id: `68a5sdf67` (required, string) - The user ID
+    + id: `58a42055d5ef19d5f69cd3f1` (required, string) - The user ID
 
 ### Get User [GET]
 Get a single User.
 
 + Response 200 (application/json)
 
-    + Attributes (User)
+    + Attributes (UserFull)
 
 + Response 404 (application/json)
 
 ### Update a User [PUT]
+To update a User, only the id is required. Every other field are optionnal. Here is an example of a request updating the firstname and lastname of a user.
 
 + Request (application/json)
 
-    + Body
-
-            {
-                "id": "68a5sdf67",
-                "username": "nnichols",
-                "email": "naida@nichols.net",
-                "firstname": "Naida",
-                "lastname": "NICHOLS",
-                "userlevel": 0
-            }
+    + Attributes (UserUpdate)
 
 + Response 200 (application/json)
 
-    + Attributes (User)
+    + Attributes (UserFull)
 
 + Response 404 (application/json)
 
@@ -75,6 +60,6 @@ Delete a single user
 
 + Response 204
 
-    + Attributes (User)
+    + Attributes (UserFull)
 
 + Response 404 (application/json)
