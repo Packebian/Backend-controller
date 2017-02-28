@@ -1,6 +1,11 @@
 ## TicketId
 + id: `58a5702f90b3871c00e9fc91` (string) - Ticket unique identifier
 
+
+## TicketExternal
++ ticket: `58a5702f90b3871c00e9fc91` (string) - Ticket unique identifier
+
+
 ## TicketFull
 + Include TicketId
 + user - Ticket creator

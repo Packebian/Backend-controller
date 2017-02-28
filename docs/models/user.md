@@ -1,6 +1,11 @@
 ## UserId
 + id: `58a42055d5ef19d5f69cd3f1` (required, string) - User unique identifier
 
+
+## UserExternal
++ user: `58a42055d5ef19d5f69cd3f1` (required, string) - User unique identifier
+
+
 ## UserFull
 + Include UserId
 + username: nnichols (required, string) - username of User
