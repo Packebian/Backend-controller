@@ -51,6 +51,15 @@ module.exports = {
     messages: {
       collection: 'Message',
       via: 'package'
+    },
+    toJSON: function() {
+      var pack = this;
+      var obj = this.toObject();
+      // Remove too verbose content of Vote
+      if(obj.ticket) obj.ticket = obj.ticket.id;
+      delete obj.builds;
+      delete obj.messages;
+      return obj;
     }
   },
   /* Check complex conditions before persisting the Object in the database */

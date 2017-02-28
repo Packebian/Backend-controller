@@ -20,6 +20,13 @@ module.exports = {
     result: {
       type: 'string',
       required: true
+    },
+    toJSON: function() {
+      var build = this;
+      var obj = this.toObject();
+      // Remove some fields of build json
+      obj.package = obj.package.id;
+      return obj;
     }
   },
   /* Check complex conditions before persisting the Object in the database */

@@ -22,6 +22,14 @@ module.exports = {
     },
     ticket: {
       model: 'Ticket'
+    },
+    toJSON: function() {
+      var message = this;
+      var obj = this.toObject();
+      // Remove too verbose content of Vote
+      if(obj.ticket) obj.ticket = obj.ticket.id;
+      if(obj.package) obj.package = obj.package.id;
+      return obj;
     }
   },
   /* Check complex conditions before persisting the Object in the database */

@@ -21,6 +21,14 @@ module.exports = {
       type: 'Integer',
       enum: [-1, 0, 1],
       defaultsTo: 0
+    },
+    toJSON: function() {
+      var vote = this;
+      var obj = this.toObject();
+      // Remove too verbose content of Vote
+      obj.ticket = obj.ticket.id;
+      obj.user = obj.user.id;
+      return obj;
     }
   },
   /* Check complex conditions before persisting the Object in the database */
