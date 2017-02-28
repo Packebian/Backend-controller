@@ -26,6 +26,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
+    "docs": "./node_modules/.bin/aglio -t flatly -i docs/api.apib -o docs/index.html",
     "start": "node app.js",
     "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js"
   },
@@ -37,6 +38,7 @@
   "author": "gattazr",
   "license": "",
   "devDependencies": {
+    "aglio": "^2.3.0",
     "barrels": "^1.6.4",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
