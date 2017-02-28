@@ -1,79 +1,75 @@
 var Promise = require('bluebird')
 /**
- * Package.js
+ * Message.js
  *
- * @description :: reprensentation of a linux package
+ * @description :: reprensentation of a message. Messages can be linked to a ticket or a package
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
-  tableName: 'Packages',
+  tableName: 'Messages',
   attributes: {
     user: {
       model: 'User',
       required: true
     },
+    message: {
+      type: 'string',
+      required: true
+    },
+    package: {
+      model: 'Package'
+    },
     ticket: {
-      model: 'Ticket',
-    },
-    name: {
-      type: 'string',
-      required: true,
-      unique: true
-    },
-    maintainer: {
-      type: 'string',
-      required: true
-    },
-    architecture: {
-      type: 'string',
-      required: true
-    },
-    major: {
-      type: 'string',
-    },
-    class: {
-      type: 'string',
-    },
-    description: {
-      type: 'string'
-    },
-    dependencies: {
-      type: 'string'
-    },
-    versions: {
-      type: 'array'
-    },
-    builds: {
-      collection: 'Build',
-      via: 'package'
-    },
-    messages: {
-      collection: 'Message',
-      via: 'package'
+      model: 'Ticket'
     },
     toJSON: function() {
-      var pack = this;
+      var message = this;
       var obj = this.toObject();
       // Remove too verbose content of Vote
       if(obj.ticket) obj.ticket = obj.ticket.id;
-      delete obj.builds;
-      delete obj.messages;
+      if(obj.package) obj.package = obj.package.id;
       return obj;
     }
+  },
+  /* Check complex conditions before persisting the Object in the database */
+  beforeCreate : function(values, next) {
+    var promises = [];
+
+    /* Check that either package or ticket is set */
+    promises.push(new Promise(function (resolve, reject) {
+      if( values.ticket == undefined && values.package == undefined) {
+        return reject("either package or ticket should be set");
+      } else if (values.ticket != undefined && values.package != undefined) {
+        return reject("package and ticket can't be both set");
+      }
+      resolve();
+    }));
+
+    /* Wait for all promises call next if no error */
+    Promise.all(promises)
+      .spread(function(){
+        next();
+      })
+      .catch(function(err){
+        /* At least one promise threw an error */
+        sails.log.info(err);
+        next(err)
+      });
+
   },
   /* Check complex conditions before persisting the Object in the database */
   beforeValidate : function(values, next) {
     var promises = [];
 
-    /* value user should point to an existing user */
-    if(values.user != undefined){
+    /* If value package is set, it should point to an existing package */
+    if(values.package != undefined) {
       promises.push(new Promise(function (resolve, reject) {
-        User
-          .findOne({id: values.user})
+        Package
+          .findOne({id: values.package})
           .then(function (record) {
             if(record == undefined) {
-              return reject("value user should match an existing user");
+              return reject("value package should match an existing package");
             }
             resolve();
           })
@@ -81,7 +77,7 @@ module.exports = {
       }));
     }
 
-    /* if it is defined, value ticket should point to an existing ticket */
+    /* If value ticket is set, it should point to an existing ticket */
     if(values.ticket != undefined) {
       promises.push(new Promise(function (resolve, reject) {
         Ticket

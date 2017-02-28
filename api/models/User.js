@@ -10,26 +10,23 @@ module.exports = {
   attributes: {
     username: {
       type: 'string',
-      size: 255,
       required: true,
       unique: true
     },
     lastname: {
-      type: 'string',
-      size: 255
+      type: 'string'
     },
     firstname: {
-      type: 'string',
-      size: 255
+      type: 'string'
     },
     email: {
       type: 'string',
-      size: 255,
       unique: true,
       email: true
     },
     userlevel: {
       type: 'integer',
+      enum: [0, 1, 2],
       defaultsTo: 0
     }
   }

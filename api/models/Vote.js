@@ -1,13 +1,13 @@
 var Promise = require('bluebird')
 /**
- * Package.js
+ * Vote.js
  *
- * @description :: reprensentation of a linux package
+ * @description :: reprensentation of a vote on ticket
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
-  tableName: 'Packages',
+  tableName: 'Votes',
   attributes: {
     user: {
       model: 'User',
@@ -15,50 +15,19 @@ module.exports = {
     },
     ticket: {
       model: 'Ticket',
-    },
-    name: {
-      type: 'string',
-      required: true,
-      unique: true
-    },
-    maintainer: {
-      type: 'string',
       required: true
     },
-    architecture: {
-      type: 'string',
-      required: true
-    },
-    major: {
-      type: 'string',
-    },
-    class: {
-      type: 'string',
-    },
-    description: {
-      type: 'string'
-    },
-    dependencies: {
-      type: 'string'
-    },
-    versions: {
-      type: 'array'
-    },
-    builds: {
-      collection: 'Build',
-      via: 'package'
-    },
-    messages: {
-      collection: 'Message',
-      via: 'package'
+    vote: {
+      type: 'Integer',
+      enum: [-1, 0, 1],
+      defaultsTo: 0
     },
     toJSON: function() {
-      var pack = this;
+      var vote = this;
       var obj = this.toObject();
       // Remove too verbose content of Vote
-      if(obj.ticket) obj.ticket = obj.ticket.id;
-      delete obj.builds;
-      delete obj.messages;
+      obj.ticket = obj.ticket.id;
+      obj.user = obj.user.id;
       return obj;
     }
   },
@@ -66,8 +35,21 @@ module.exports = {
   beforeValidate : function(values, next) {
     var promises = [];
 
+    /* Check the user/ticket couple is unique */
+    promises.push(new Promise(function (resolve, reject) {
+      Vote
+        .findOne({user: values.user, ticket: values.ticket})
+        .then(function (record) {
+          if(record != undefined) {
+            return reject("the vote already exists");
+          }
+          resolve();
+        })
+        .catch(function (err) { reject(err) });
+    }));
+
     /* value user should point to an existing user */
-    if(values.user != undefined){
+    if(values.user != undefined) {
       promises.push(new Promise(function (resolve, reject) {
         User
           .findOne({id: values.user})
@@ -81,7 +63,7 @@ module.exports = {
       }));
     }
 
-    /* if it is defined, value ticket should point to an existing ticket */
+    /* value ticket should point to an existing ticket */
     if(values.ticket != undefined) {
       promises.push(new Promise(function (resolve, reject) {
         Ticket

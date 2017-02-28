@@ -18,11 +18,12 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'packebianMysqlServer'
+    connection: 'packebianMongodb',
+    migrate: 'safe'
   },
 
   log: {
-    level: 'info'
+    level: 'silly'
   }
 
 };

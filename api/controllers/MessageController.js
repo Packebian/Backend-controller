@@ -1,7 +1,7 @@
 /**
- * TicketController
+ * MessageController
  *
- * @description :: Server-side logic for managing Tickets
+ * @description :: Server-side logic for managing Messages
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 

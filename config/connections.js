@@ -40,13 +40,13 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  packebianMysqlServer: {
-    adapter: 'sails-mysql',
-    host: 'mysqldb',
-    user: 'packebian',
-    password: 'packebian123',
-    database: 'Packebian'
-  }
+  // packebianMysqlServer: {
+  //   adapter: 'sails-mysql',
+  //   host: 'mysqldb',
+  //   user: 'packebian',
+  //   password: 'packebian123',
+  //   database: 'Packebian'
+  // }
 
   /***************************************************************************
   *                                                                          *
@@ -56,14 +56,14 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  // someMongodbServer: {
-  //   adapter: 'sails-mongo',
-  //   host: 'localhost',
-  //   port: 27017,
-  //   user: 'username', //optional
-  //   password: 'password', //optional
-  //   database: 'your_mongo_db_name_here' //optional
-  // },
+  packebianMongodb: {
+    adapter: 'sails-mongo',
+    host: process.env.MONGO_HOST,
+    port: process.env.MONGO_PORT,
+    database: process.env.MONGO_DB,
+    user: process.env.MONGO_USER,
+    password: process.env.MONGO_PASS
+  },
 
   /***************************************************************************
   *                                                                          *
