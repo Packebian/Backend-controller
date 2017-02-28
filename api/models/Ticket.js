@@ -51,34 +51,74 @@ module.exports = {
       collection: 'Vote',
       via: 'ticket'
     },
-    results: function (next) {
-      Vote
-        .find({ticket: this.id})
-        .then(function (records) {
-          var votes = {};
-          votes.upvote = 0;
-          votes.downvote = 0;
-          votes.neutral = 0;
 
-          for (var record of records){
-            switch(record.vote) {
-              case 1:
-                votes.upvote++;
-                break;
-              case 0:
-                votes.neutral++;
-                break;
-              case -1:
-                votes.downvote++;
-                break;
-              default:
+    /**
+     * Retrieve the votes of this ticket and create a json object containing the results.
+     * {upvotes: {number}, downvotes: {number}, neutral: {number}}
+     *
+     * This function can be used with a callback or will return a promise if none is given.
+     *
+     * @method results
+     * @async
+     * @param {Function} callback callback function
+     * @param {String} callback.error error message
+     * @param {Object} callback.result json object
+     * @return {Promise|Object} A promise of the result that returns an object in case of success
+     */
+    results: function(cb) {
+      ticket = this;
+      return new Promise(function(resolve, reject) {
+        Vote
+          .find({ticket: ticket.id})
+          .then(function (records) {
+            var votes = {};
+            votes.upvotes = 0;
+            votes.downvotes = 0;
+            votes.neutrals = 0;
+
+            for(var record of records) {
+              switch(record.vote) {
+                case 1:
+                  votes.upvotes++;
+                  break;
+                case 0:
+                  votes.neutrals++;
+                  break;
+                case -1:
+                  votes.downvotes++;
+                  break;
+                default:
+              }
             }
-          }
-          return next(null, votes);
+            if(cb){ cb(null, votes); }
+            resolve(votes);
+          })
+          .catch(function(err){
+            if(cb){ cb(error); }
+            reject(error);
+          });
+      });
+    },
+
+    toJSON: function() {
+      var done = false;
+      var ticket = this;
+      var obj = this.toObject();
+      delete obj.votes;
+
+      this.results()
+        .then(function(results) {
+          obj.results = results;
+          done = true;
         })
-        .catch(function(err){
-          return next(err);
+        .catch(function(error) {
+          error => sails.log.error(error);
         });
+
+      while(done === false) {
+        require('deasync').sleep(10);
+      }
+      return obj;
     }
   },
   /* Check complex conditions before persisting the Object in the database */
