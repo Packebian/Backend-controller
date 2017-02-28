@@ -16,7 +16,6 @@ Create a new User.
 
     + Attributes (UserCreate)
 
-
 + Response 201
 
     + Attributes (UserFull)
@@ -40,7 +39,7 @@ Get a single User.
 + Response 404 (application/json)
 
 ### Update a User [PUT]
-To update a User, only the id is required. Every other field are optionnal. Here is an example of a request updating the firstname and lastname of a user.
+Every field is optionnal. Here is an example of a request updating the firstname and lastname of a user.
 
 + Request (application/json)
 
@@ -49,6 +48,7 @@ To update a User, only the id is required. Every other field are optionnal. Here
 + Response 200 (application/json)
 
     + Attributes (UserFull)
+        + Include UserUpdate
 
 + Response 404 (application/json)
 

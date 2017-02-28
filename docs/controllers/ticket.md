@@ -14,27 +14,11 @@ Create a new Ticket
 
 + Request with body (application/json)
 
-    + Body
-
-            {
-                "user": "68a5sdf67",
-                "status": "1",
-                "name": "processim",
-                "maintainer": "naida@nichols.net",
-                "architecture": "all",
-                "major": "RICM3",
-                "class": "ALM",
-                "description": "Code you processor",
-                "dependencies": "gcc",
-                "versions": [
-                    "1.0",
-                    "1.2"
-                ]
-            }
+    + Attributes (TicketCreate)
 
 + Response 201
 
-    + Attributes (Ticket)
+    + Attributes (TicketFull)
 
 + Response 500 (application/json)
 
@@ -43,43 +27,28 @@ Create a new Ticket
 
 + Parameters
 
-    + id: `68a5sdf67` (required, string) - The ticket ID
+    + id: `58a5702f90b3871c00e9fc91` (required, string) - The ticket ID
 
 ### Get Ticket [GET]
 Get a single Ticket.
 
 + Response 200 (application/json)
 
-    + Attributes (Ticket)
+    + Attributes (TicketFull)
 
 + Response 404 (application/json)
 
 ### Update a Ticket [PUT]
+Every field is optionnal. Here is an example of a request updating the major and class of a ticket.
 
 + Request (application/json)
 
-    + Body
-
-            {
-                "id": "2a4a3d19b",
-                "user": "68a5sdf67",
-                "status": "1",
-                "name": "processim",
-                "maintainer": "naida@nichols.net",
-                "architecture": "all",
-                "major": "RICM3",
-                "class": "ALM",
-                "description": "Code you processor",
-                "dependencies": "gcc",
-                "versions": [
-                    "1.0",
-                    "1.2"
-                ]
-            }
+    + Attributes (TicketUpdate)
 
 + Response 200 (application/json)
 
-    + Attributes (Ticket)
+    + Attributes (TicketFull)
+        + Include TicketUpdate
 
 + Response 404 (application/json)
 
@@ -91,6 +60,6 @@ Delete a single ticket
 
 + Response 204
 
-    + Attributes (Ticket)
+    + Attributes (TicketFull)
 
 + Response 404 (application/json)
