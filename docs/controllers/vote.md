@@ -1,4 +1,4 @@
-## Votes List [/votes]
+## Vote List [/votes]
 
 ### Get Votes [GET]
 Get a list of votes.
@@ -27,7 +27,7 @@ Create a new Vote
 
 + Parameters
 
-    + id: `58a5702f90b3871c00e9fc91` (required, string) - The vote ID
+    + id: `58ac7aec913c8ef3f69e4ae1` (required, string) - The vote ID
 
 ### Get Vote [GET]
 Get a single Vote.

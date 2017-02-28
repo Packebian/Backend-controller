@@ -1,4 +1,4 @@
-## Tickets List [/tickets]
+## Ticket List [/tickets]
 
 ### Get Tickets [GET]
 Get a list of tickets.

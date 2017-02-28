@@ -1,4 +1,4 @@
-## Users List [/users]
+## User List [/users]
 
 ### Get Users [GET]
 Get a list of users.
