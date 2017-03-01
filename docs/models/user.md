@@ -1,9 +1,9 @@
 ## UserId
-+ id: `58a42055d5ef19d5f69cd3f1` (string) - User unique identifier
++ id: 1 (number) - User unique identifier
 
 
 ## UserExternal
-+ user: `58a42055d5ef19d5f69cd3f1` (string) - User unique identifier
++ user: 1 (number) - User unique identifier
 
 
 ## UserFull

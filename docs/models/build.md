@@ -1,9 +1,9 @@
 ## BuildId
-+ id: `4ef41ce7a13a51ac76c24ac2` (string) - Build unique identifier
++ id: 1 (number) - Build unique identifier
 
 
 ## BuildExternal
-+ package: `4ef41ce7a13a51ac76c24ac2` (string) - Build unique identifier
++ package: 1 (number) - Build unique identifier
 
 
 ## BuildFull

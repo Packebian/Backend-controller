@@ -1,9 +1,9 @@
 ## TicketId
-+ id: `58a5702f90b3871c00e9fc91` (string) - Ticket unique identifier
++ id: 1 (number) - Ticket unique identifier
 
 
 ## TicketExternal
-+ ticket: `58a5702f90b3871c00e9fc91` (string) - Ticket unique identifier
++ ticket: 1 (number) - Ticket unique identifier
 
 
 ## TicketFull

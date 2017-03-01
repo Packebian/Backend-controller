@@ -1,9 +1,9 @@
 ## PackageId
-+ id: `4ac26132d5ef125de13bac31` (string) - Package unique identifier
++ id: 1 (number) - Package unique identifier
 
 
 ## PackageExternal
-+ package: `4ac26132d5ef125de13bac31` (string) - Package unique identifier
++ package: 1 (number) - Package unique identifier
 
 
 ## PackageFull

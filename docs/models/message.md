@@ -1,9 +1,9 @@
 ## MessageId
-+ id: `58ace71e81e82ce24d71ea81` (string) - Message unique identifier
++ id: 1 (number) - Message unique identifier
 
 
 ## MessageExternal
-+ package: `58ace71e81e82ce24d71ea81` (string) - Message unique identifier
++ package: 1 (number) - Message unique identifier
 
 
 ## MessageFull

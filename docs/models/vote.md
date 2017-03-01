@@ -1,9 +1,9 @@
 ## VoteId
-+ id: `58ac7aec913c8ef3f69e4ae1` (string) - Vote unique identifier
++ id: 1 (string) - Vote unique identifier
 
 
 ## VoteExternal
-+ vote: `58ac7aec913c8ef3f69e4ae1` (string) - Vote unique identifier
++ vote: 1 (number) - Vote unique identifier
 
 
 ## VoteFull
