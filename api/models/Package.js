@@ -9,6 +9,10 @@ var Promise = require('bluebird')
 module.exports = {
   tableName: 'Packages',
   attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true
+    },
     user: {
       model: 'User',
       required: true
@@ -61,6 +65,18 @@ module.exports = {
       delete obj.messages;
       return obj;
     }
+  },
+  /* generate integer if mongodb is used */
+  beforeCreate : function (values, cb) {
+    delete values.id; // remove id from values if one was given
+
+    // TODO: Test if mongodb is used
+
+    Sequence.next(Package.tableName, function(err, num) {
+      if (err) return cb(err);
+      values.id = num;
+      cb();
+    });
   },
   /* Check complex conditions before persisting the Object in the database */
   beforeValidate : function(values, next) {

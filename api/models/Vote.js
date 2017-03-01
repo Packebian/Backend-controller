@@ -2,13 +2,17 @@ var Promise = require('bluebird')
 /**
  * Vote.js
  *
- * @description :: reprensentation of a vote on ticket
+ * @description :: reprensentation of a vote on a ticket
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
   tableName: 'Votes',
   attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true
+    },
     user: {
       model: 'User',
       required: true
@@ -30,6 +34,18 @@ module.exports = {
       obj.user = obj.user.id;
       return obj;
     }
+  },
+  /* generate integer if mongodb is used */
+  beforeCreate : function (values, cb) {
+    delete values.id; // remove id from values if one was given
+
+    // TODO: Test if mongodb is used
+
+    Sequence.next(Vote.tableName, function(err, num) {
+      if (err) return cb(err);
+      values.id = num;
+      cb();
+    });
   },
   /* Check complex conditions before persisting the Object in the database */
   beforeValidate : function(values, next) {

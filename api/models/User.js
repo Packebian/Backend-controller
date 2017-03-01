@@ -1,13 +1,17 @@
 /**
  * User.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: representation of a User.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
   tableName: 'Users',
   attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true
+    },
     username: {
       type: 'string',
       required: true,
@@ -29,5 +33,17 @@ module.exports = {
       enum: [0, 1, 2],
       defaultsTo: 0
     }
+  },
+  /* generate integer if mongodb is used */
+  beforeCreate : function (values, cb) {
+    delete values.id; // remove id from values if one was given
+
+    // TODO: Test if mongodb is used
+
+    Sequence.next(User.tableName, function(err, num) {
+      if (err) return cb(err);
+      values.id = num;
+      cb();
+    });
   }
 };
