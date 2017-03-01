@@ -8,21 +8,21 @@ before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 node_js:
-  - "6"
-  - "5"
+  - '6'
+  - '5'
 
 script:
   - npm install
-  - npm test
+  - npm test # Test model and dredd
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker build -t packebian/backend-controller:stable . ;
-      docker push packebian/backend-controller:stable;
+      docker push packebian/backend-controller:stable ;
     fi
   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
       docker build -t packebian/backend-controller:latest . ;
-      docker push packebian/backend-controller:latest;
+      docker push packebian/backend-controller:latest ;
     fi
 
 branches:
