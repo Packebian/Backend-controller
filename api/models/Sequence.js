@@ -11,7 +11,7 @@ module.exports = {
 
   attributes: {
     num : {
-      type : "integer"
+      type : 'integer'
     }
   },
   /**

@@ -8,13 +8,19 @@ var Promise = require('bluebird')
 
 module.exports = {
   tableName: 'Builds',
+  autoPK: false,
   attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true
+    },
     version: {
       type: 'string',
       required: true
     },
     package: {
       model: 'Package',
+      type: 'integer',
       required: true
     },
     result: {
@@ -55,7 +61,7 @@ module.exports = {
     if(values.package != undefined) {
       promises.push(new Promise(function (resolve, reject) {
         Package
-          .findOne({id: values.package})
+          .findOne(values.package)
           .then(function (record) {
             if(record == undefined) {
               return reject("value package should match an existing package");

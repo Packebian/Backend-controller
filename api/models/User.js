@@ -7,7 +7,12 @@
 
 module.exports = {
   tableName: 'Users',
+  autoPK: false,
   attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true
+    },
     username: {
       type: 'string',
       required: true,
