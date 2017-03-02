@@ -156,7 +156,7 @@ module.exports = {
           .findOne({ id: values.user})
           .then(function (record) {
             if(record == undefined) {
-              return reject("value user should match an existing user");
+              return reject("ticket: value user should match an existing user");
             }
             resolve();
           })

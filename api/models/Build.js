@@ -64,7 +64,7 @@ module.exports = {
           .findOne(values.package)
           .then(function (record) {
             if(record == undefined) {
-              return reject("value package should match an existing package");
+              return reject("builds: value package should match an existing package");
             }
             resolve();
           })

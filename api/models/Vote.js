@@ -66,7 +66,7 @@ module.exports = {
         .findOne({user: values.user, ticket: values.ticket})
         .then(function (record) {
           if(record != undefined) {
-            return reject("the vote already exists");
+            return reject("vote: the vote already exists");
           }
           resolve();
         })
@@ -80,7 +80,7 @@ module.exports = {
           .findOne(values.user)
           .then(function (record) {
             if(record == undefined) {
-              return reject("value user should match an existing user");
+              return reject("vote: value user should match an existing user");
             }
             resolve();
           })
@@ -95,7 +95,7 @@ module.exports = {
           .findOne(values.ticket)
           .then(function (record) {
             if(record == undefined) {
-              return reject("value ticket should match an existing ticket");
+              return reject("vote: value ticket should match an existing ticket");
             }
             resolve();
           })

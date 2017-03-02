@@ -52,5 +52,9 @@ module.exports = {
       values.id = num;
       cb();
     });
+  },
+  beforeDestroy: function(values, cb){
+    // TODO: Check ALL Foreign keys before deleting
+    cb();
   }
 };

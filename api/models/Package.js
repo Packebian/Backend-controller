@@ -98,7 +98,7 @@ module.exports = {
           .findOne(values.user)
           .then(function (record) {
             if(record == undefined) {
-              return reject("value user should match an existing user");
+              return reject("package: value user should match an existing user");
             }
             resolve();
           })
@@ -113,7 +113,7 @@ module.exports = {
           .findOne({id: values.ticket})
           .then(function (record) {
             if(record == undefined) {
-              return reject("value ticket should match an existing ticket");
+              return reject("package: value ticket should match an existing ticket");
             }
             resolve();
           })
