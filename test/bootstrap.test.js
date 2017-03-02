@@ -4,7 +4,7 @@ var Barrels = require('barrels');
 
 before(function(done) {
   // Increase the Mocha timeout so that Sails has enough time to lift.
-  this.timeout(4000);
+  this.timeout(10000);
 
   sails.lift(config, function(err) {
     if (err) return done(err);
@@ -16,13 +16,24 @@ before(function(done) {
     fixtures = barrels.data;
 
     // Populate the DB
-    barrels.populate(
-      ['user', 'ticket', 'vote', 'package', 'build'],
+    barrels.populate([
+        'user',
+        'ticket',
+        'vote',
+        'package',
+        'build',
+      ],
       function(err) {
         if (err) return done(err);
         done(err, sails);
       }
     );
+  });
+});
+
+describe('Sails', function() {
+  it('should lift sails without errors', function(done) {
+    done();
   });
 });
 

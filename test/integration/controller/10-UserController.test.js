@@ -28,6 +28,8 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object);
 
+          dataUserC.userFull.id = res.body.id // Retrieve id to destroy it later
+
           done();
         });
     });

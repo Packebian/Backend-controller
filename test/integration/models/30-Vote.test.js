@@ -19,6 +19,7 @@ describe('MODEL Vote', function() {
     it('should create a vote using a full json', function (done) {
       Vote.create(dataVoteM.voteFull)
         .then(function(res) {
+          dataVoteM.voteFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);

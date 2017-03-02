@@ -19,6 +19,7 @@ describe('MODEL Build', function() {
     it('should create a build using a full json', function (done) {
       Build.create(dataBuildM.buildFull)
         .then(function(res) {
+          dataBuildM.buildFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);

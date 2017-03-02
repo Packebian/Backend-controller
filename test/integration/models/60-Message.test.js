@@ -19,6 +19,7 @@ describe('MODEL Message', function() {
     it('should create a message using a full json', function (done) {
       Message.create(dataMessageM.messageFull)
         .then(function(res) {
+          dataMessageM.messageFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);
