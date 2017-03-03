@@ -53,7 +53,7 @@ var global = module.exports = {
 
 before(function(done) {
   // Increase the Mocha timeout so that Sails has enough time to lift.
-  this.timeout(15000);
+  this.timeout(30000);
 
   sails.lift(config, function(err) {
     if (err) return done(err);
