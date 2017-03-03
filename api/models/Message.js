@@ -19,7 +19,7 @@ module.exports = {
       type: 'integer',
       required: true
     },
-    message: {
+    content: {
       type: 'string',
       required: true
     },
@@ -35,8 +35,8 @@ module.exports = {
       var message = this;
       var obj = this.toObject();
       // Remove too verbose content of Vote
-      if(obj.ticket) obj.ticket = obj.ticket.id;
-      if(obj.package) obj.package = obj.package.id;
+      if(obj.ticket !== undefined && obj.ticket.id !== undefined) obj.ticket = obj.ticket.id;
+      if(obj.package !== undefined && obj.package.id !== undefined) obj.package = obj.package.id;
       return obj;
     }
   },

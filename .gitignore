@@ -40,7 +40,7 @@
 ################################################
 
 config/local.js
-docs/index.apib
+docs/api-tests-full.apib
 
 
 

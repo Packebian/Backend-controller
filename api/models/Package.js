@@ -63,7 +63,7 @@ module.exports = {
       var pack = this;
       var obj = this.toObject();
       // Remove too verbose content of Vote
-      if(obj.ticket) obj.ticket = obj.ticket.id;
+      if(obj.ticket !== undefined && obj.ticket.id !== undefined) obj.ticket = obj.ticket.id;
       delete obj.builds;
       delete obj.messages;
       return obj;

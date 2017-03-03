@@ -33,8 +33,8 @@ module.exports = {
       var vote = this;
       var obj = this.toObject();
       // Remove too verbose content of Vote
-      obj.ticket = obj.ticket.id;
-      obj.user = obj.user.id;
+      if(obj.ticket !== undefined && obj.ticket.id !== undefined) obj.ticket = obj.ticket.id;
+      if(obj.user !== undefined && obj.user.id !== undefined) obj.user = obj.user.id;
       return obj;
     }
   },

@@ -1,29 +1,52 @@
 ## VoteId
-+ id: 1 (string) - Vote unique identifier
++ id: 1 (required, number) - Vote unique identifier
 
 
-## VoteExternal
-+ vote: 1 (number) - Vote unique identifier
+## ExternalVoteId
++ vote: 1 (required, number) - Vote unique identifier
 
 
-## VoteFull
-+ Include VoteId (required)
-+ Include UserExternal (required)
-+ Include TicketExternal (required)
-+ vote: 1 (required, number) - Vote on the ticket. -1 if downvote, 1 if upvote, 0 if neutral.
+## VoteAllInfos
++ Include VoteCreateInfos
 + createdAt: `2017-02-27T08:40:01.551Z` (required, string) - date/time (ISO8601 format) of creation of the Ticket
 + updatedAt: `2017-02-27T08:40:01.551Z` (required, string) - date/time (ISO8601 format) of last modification of the Ticket
 
 
-## VoteList (array)
-+ (VoteFull)
-
-
-## VoteCreate
-+ Include UserExternal (required)
-+ Include TicketExternal (required)
+## VoteCreateInfos
 + vote: 1 (required, number) - Vote on the ticket. -1 if downvote, 1 if upvote, 0 if neutral.
 
 
-## VoteUpdate
+## VoteReqPOST
++ Include ExternalUserId
++ Include ExternalTicketId
++ Include VoteCreateInfos
+
+
+## VoteReqPUT
 + vote: `-1` (number) - Vote on the ticket. -1 if downvote, 1 if upvote, 0 if neutral.
+
+
+## VoteResGET
++ Include VoteId
++ Include ExternalUserId
++ Include ExternalTicketId
++ Include VoteAllInfos
+
+
+## VoteResGETAll (array)
++ (VoteResGET)
+
+
+## VoteResPOST
++ Include VoteId
++ Include ExternalUserId
++ Include ExternalTicketId
++ Include VoteAllInfos
+
+
+## VoteResPUT
++ Include VoteResGET
+
+
+## VoteResDELETE
++ Include VoteResGET

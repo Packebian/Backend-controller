@@ -25,13 +25,15 @@ module.exports = {
     },
     result: {
       type: 'string',
-      required: true
+      defaultsTo: 'Pending'
     },
     toJSON: function() {
       var build = this;
       var obj = this.toObject();
       // Remove some fields of build json
-      obj.package = obj.package.id;
+      if(obj.package.id !== undefined) {
+        obj.package = obj.package.id;
+      }
       return obj;
     }
   },
