@@ -6,22 +6,34 @@ language: node_js
 
 before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  - chmod +x /usr/local/bin/docker-compose
+  - docker-compose --version
+  - cd env
+  - if [ "$TRAVIS_BRANCH" == "develop" ]; then
+      git fetch origin ;
+      git checkout develop ;
+    fi
+  - docker-compose pull
+  - docker-compose build
+  - cd ..
 
 node_js:
   - '6'
   - '5'
 
 script:
-  - npm install
-  - npm test # Test model and dredd
+  - docker build -t packebian/backend-controller:latest .
+  - docker tag packebian/backend-controller:latest packebian/backend-controller:stable . ;
+  - cd env
+  - docker-compose up mongodb -d
+  - docker-compose run sails npm test # Run tests
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker build -t packebian/backend-controller:stable . ;
       docker push packebian/backend-controller:stable ;
     fi
   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
-      docker build -t packebian/backend-controller:latest . ;
       docker push packebian/backend-controller:latest ;
     fi
 
