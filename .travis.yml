@@ -14,10 +14,8 @@ before_install:
       git fetch origin ;
       git checkout develop ;
     fi
-  - cd ..
 
 script:
-  - cd env
   - docker-compose up -d mongodb
   - docker-compose run sails npm test # Run tests
 
