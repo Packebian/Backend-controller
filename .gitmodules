@@ -1,3 +1,3 @@
 [submodule "env"]
 	path = env
-	url = git@github.com:Packebian/Backend-Controller-env.git
+	url = https://github.com/Packebian/Backend-Controller-env.git
