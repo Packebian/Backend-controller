@@ -2,31 +2,23 @@ sudo: required
 services:
   - docker
 
-language: node_js
-
 before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-  - chmod +x /usr/local/bin/docker-compose
-  - docker-compose --version
+  - curl -L https://github.com/docker/compose/releases/download/1.11.1/run.sh > docker-compose
+  - PATH=$(pwd):$PATH
+  - chmod +x docker-compose && docker-compose --version
+  - docker build -t packebian/backend-controller:latest .
+  - docker tag packebian/backend-controller:latest packebian/backend-controller:stable
   - cd env
   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
       git fetch origin ;
       git checkout develop ;
     fi
-  - docker-compose pull
-  - docker-compose build
   - cd ..
 
-node_js:
-  - '6'
-  - '5'
-
 script:
-  - docker build -t packebian/backend-controller:latest .
-  - docker tag packebian/backend-controller:latest packebian/backend-controller:stable . ;
   - cd env
-  - docker-compose up mongodb -d
+  - docker-compose up -d mongodb
   - docker-compose run sails npm test # Run tests
 
 after_success:

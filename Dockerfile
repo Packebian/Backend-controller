@@ -15,7 +15,7 @@ WORKDIR /srv/sails
 EXPOSE 1337
 
 # Install all dependencies
-RUN npm prune && npm install
+RUN npm prune && npm install --quiet
 
 # Envrionment
 ENV SAILS_SECRET="c9693b2d5572ffd96a79cae6a8453d57" \
