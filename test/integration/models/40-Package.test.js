@@ -19,6 +19,7 @@ describe('MODEL Package', function() {
     it('should create a package using a full json', function (done) {
       Package.create(dataPackageM.packageFull)
         .then(function(res) {
+          dataPackageM.packageFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);

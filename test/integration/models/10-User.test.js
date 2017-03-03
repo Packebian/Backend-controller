@@ -19,6 +19,7 @@ describe('MODEL User', function() {
     it('should create a user using a full json', function (done) {
       User.create(dataUserM.userFull)
         .then(function(res) {
+          dataUserM.userFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);

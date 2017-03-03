@@ -19,6 +19,7 @@ describe('MODEL Ticket', function() {
     it('should create a ticket using a full json', function (done) {
       Ticket.create(dataTicketM.ticketFull)
         .then(function(res) {
+          dataTicketM.ticketFull.id = res.id // Retrieve id to destroy it later
           done();
         })
         .catch(done);
