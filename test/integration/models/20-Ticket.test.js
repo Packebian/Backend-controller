@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataTicketM = require('./20-Ticket.dataM.js');
+var dataTicketM = require('./20-Ticket.dataM.js');
 
 /*
  * Tests of the Ticket model

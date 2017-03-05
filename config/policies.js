@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Policy Mappings
  * (sails.config.policies)

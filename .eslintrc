@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "es6" : true
+  },
+  "globals": {
+      "sails": true,
+      "Build": true,
+      "Message": true,
+      "Package": true,
+      "Sequence": true,
+      "Ticket": true,
+      "User": true,
+      "Vote": true,
+    }
+ }

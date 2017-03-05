@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataVoteM = require('./30-Vote.dataM.js');
+var dataVoteM = require('./30-Vote.dataM.js');
 
 /*
  * Tests of the Vote model

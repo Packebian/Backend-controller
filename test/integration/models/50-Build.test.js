@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataBuildM = require('./50-Build.dataM.js');
+var dataBuildM = require('./50-Build.dataM.js');
 
 /*
  * Tests of the Build model

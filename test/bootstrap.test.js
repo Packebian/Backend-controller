@@ -1,3 +1,5 @@
+"use strict";
+
 var sails = require('sails');
 var config = require('../config/env/test');
 var Promise = require('bluebird');
@@ -10,31 +12,31 @@ var global = module.exports = {
 
     /* Destroy Builds */
     promises.push(new Promise(function (resolve, reject) {
-      Build.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Build.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Message */
     promises.push(new Promise(function (resolve, reject) {
-      Message.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Message.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Packages */
     promises.push(new Promise(function (resolve, reject) {
-      Package.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Package.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Votes */
     promises.push(new Promise(function (resolve, reject) {
-      Vote.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Vote.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Tickets */
     promises.push(new Promise(function (resolve, reject) {
-      Ticket.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Ticket.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Users */
     promises.push(new Promise(function (resolve, reject) {
-      User.destroy({}).then(records => resolve()).catch(err => reject(err))
+      User.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
     /* Destroy Sequences */
     promises.push(new Promise(function (resolve, reject) {
-      Sequence.destroy({}).then(records => resolve()).catch(err => reject(err))
+      Sequence.destroy({}).then(records => resolve()).catch(err => reject(err));
     }));
 
     /* Wait for all promises call next if no error */
@@ -46,7 +48,7 @@ var global = module.exports = {
       .catch(function(err){
         /* At least one promise threw an error */
         console.log(err);
-        cb(err)
+        cb(err);
       });
   }
 }
@@ -62,7 +64,7 @@ before(function(done) {
     var barrels = new Barrels();
 
     // Save original objects in `fixtures` variable
-    fixtures = barrels.data;
+    var fixtures = barrels.data;
 
     // Delete everything in the database and then start populating and the app
     global.clearDatabase(function(err){
@@ -98,7 +100,7 @@ after(function(done) {
 
   // Delete everything in the database and lower the app
   global.clearDatabase(function(err){
-    if(err) done(err)
+    if(err) done(err);
 
     sails.lower(done);
   })

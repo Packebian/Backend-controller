@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Production environment settings
  *
@@ -18,8 +19,8 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'packebianMongodb',
-    migrate: 'safe'
+    connection: "packebianMongodb",
+    migrate: "safe"
   },
 
   /***************************************************************************
@@ -33,7 +34,7 @@ module.exports = {
    ***************************************************************************/
 
   log: {
-    level: 'info'
+    level: "info"
   }
 
 };

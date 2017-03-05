@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataMessageM = require('./60-Message.dataM.js');
+var dataMessageM = require('./60-Message.dataM.js');
 
 /*
  * Tests of the Message model

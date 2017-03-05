@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataPackageM = require('./40-Package.dataM.js');
+var dataPackageM = require('./40-Package.dataM.js');
 
 /*
  * Tests of the Package model

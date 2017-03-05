@@ -1,4 +1,6 @@
-var Promise = require('bluebird')
+"use strict";
+
+var Promise = require("bluebird");
 /**
  * Sequence.js
  *
@@ -10,8 +12,8 @@ var Promise = require('bluebird')
 module.exports = {
 
   attributes: {
-    num : {
-      type : 'integer'
+    num: {
+      type: "integer"
     }
   },
   /**
@@ -25,19 +27,25 @@ module.exports = {
    * @param {Object} callback.result json object
    * @return {Promise|Object} A promise of the result that returns an integer in case of success
    */
-  next : function (seqId, cb) {
-    seq = this;
+  next: function (seqId, cb) {
     return new Promise(function(resolve, reject) {
       Sequence.native(function (err, col) {
+        if(err) {
+          if(cb) { return cb(err); }
+          return reject(err);
+        }
         col.findAndModify(
           { _id: seqId },
-          [['_id', 'asc']],
-          {$inc: { num : 1 }},
-          { new: true, upsert : true},
-          function(err, data) {
-            if(cb) cb(err, data.value.num)
-            if(err) reject(err)
-            resolve(data.value.num)
+          [["_id", "asc"]],
+          {$inc: { num: 1 }},
+          { new: true, upsert: true},
+          function(error, data) {
+            if(error) {
+              if(cb) { return cb(error); }
+              return reject(error);
+            }
+            if(cb) { return cb(null, data.value.num); }
+            resolve(data.value.num);
           }
         );
       });

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Development environment settings
  *
@@ -18,12 +19,12 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'packebianMongodb',
-    migrate: 'alter'
+    connection: "packebianMongodb",
+    migrate: "alter"
   },
 
   log: {
-    level: 'silly'
+    level: "silly"
   }
 
 };

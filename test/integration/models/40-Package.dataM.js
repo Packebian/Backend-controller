@@ -1,3 +1,5 @@
+"use strict";
+
 /*
  * Data used for the tests of the Package model
  */

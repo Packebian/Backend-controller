@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataUserM = require('./10-User.dataM.js');
+var dataUserM = require('./10-User.dataM.js');
 
 /*
  * Tests of the User model

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * HTTP Server Settings
  * (sails.config.http)
@@ -77,7 +78,7 @@ module.exports.http = {
 
     // bodyParser: require('skipper')({strict: true})
 
-  },
+  }
 
   /***************************************************************************
   *                                                                          *

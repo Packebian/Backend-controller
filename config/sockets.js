@@ -1,3 +1,4 @@
+"use strict";
 /**
  * WebSocket Server Settings
  * (sails.config.sockets)
