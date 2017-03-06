@@ -114,19 +114,30 @@ module.exports = {
       var obj = this.toObject();
       delete obj.votes;
 
-      this.results()
-        .then(function(results) {
-          obj.results = results;
-          done = true;
-        })
-        .catch(function(err) {
+      // TODO: then()/catch() are not always called even though reject()/resolve() always are
+      // this.results()
+      //   .then(function(results) {
+      //     obj.results = results;
+      //     obj.done = true;
+      //   })
+      //   .catch(function(err) {
+      //     sails.log.error("error: ", err);
+      //     obj.done = true;
+      //   });
+      // Call this.results() using the callback version because the one using promise doesn't work
+      this.results(function(err, results) {
+        done = true;
+        if(err) {
           sails.log.error("error: ", err);
-          done = true;
-        });
+          return;
+        }
+        obj.results = results;
+      });
 
       while(done === false) {
         Deasync.sleep(1);
       }
+
       return obj;
     }
   },
