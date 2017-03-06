@@ -22,7 +22,7 @@ describe('MODEL User', function() {
       User.create(dataUserM.userFull)
         .then(function(res) {
           dataUserM.userFull.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -32,7 +32,7 @@ describe('MODEL User', function() {
       User.create(dataUserM.userMinimal)
         .then(function(res) {
           dataUserM.userMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -42,7 +42,7 @@ describe('MODEL User', function() {
       User.create(dataUserM.userUsedEmail)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
 
@@ -51,7 +51,7 @@ describe('MODEL User', function() {
       User.create(dataUserM.userUsedUsername)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
 
@@ -60,7 +60,7 @@ describe('MODEL User', function() {
       User.create(dataUserM.userWrongEmail)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
   });
@@ -77,7 +77,7 @@ describe('MODEL User', function() {
         .then(function(res) {
           // TODO: Test if res is an array of User
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -94,7 +94,7 @@ describe('MODEL User', function() {
         .then(function(res) {
           // TODO: Test if res is a User
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -111,7 +111,7 @@ describe('MODEL User', function() {
         .then(function(res) {
           // TODO: Test if res is an array of user
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -121,7 +121,7 @@ describe('MODEL User', function() {
       User.update(dataUserM.userFull.id, dataUserM.userUsedEmail)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
 
@@ -130,7 +130,7 @@ describe('MODEL User', function() {
       User.update(dataUserM.userFull.id, dataUserM.userUsedUsername)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
 
@@ -139,7 +139,7 @@ describe('MODEL User', function() {
       User.update(dataUserM.userFull.id, dataUserM.userWrongEmail)
         .then(done)
         .catch(function(err){
-          done();
+          return done();
         });
     });
   });
@@ -155,7 +155,7 @@ describe('MODEL User', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -165,7 +165,7 @@ describe('MODEL User', function() {
       User.destroy({id : [ dataUserM.userMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });

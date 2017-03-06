@@ -56,7 +56,7 @@ module.exports = {
     Sequence.next(Message.tableName, function(err, num) {
       if (err) { return cb(err); }
       values.id = num;
-      cb();
+      return cb();
     });
   },
   /* Check complex conditions before persisting the Object in the database */
@@ -82,9 +82,9 @@ module.exports = {
             if(record === undefined) {
               return reject("message: value package should match an existing package");
             }
-            resolve();
+            return resolve();
           })
-          .catch(function (err) { reject(err); });
+          .catch(function (err) { return reject(err); });
       }));
     }
 
@@ -97,21 +97,21 @@ module.exports = {
             if(record === undefined) {
               return reject("message: value ticket should match an existing ticket");
             }
-            resolve();
+            return resolve();
           })
-          .catch(function (err) { reject(err); });
+          .catch(function (err) { return reject(err); });
       }));
     }
 
     /* Wait for all promises call next if no error */
     Promise.all(promises)
       .spread(function(){
-        next();
+        return next();
       })
       .catch(function(err){
         /* At least one promise threw an error */
         sails.log.info(err);
-        next(err);
+        return next(err);
       });
   }
 };

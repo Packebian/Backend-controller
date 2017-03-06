@@ -100,11 +100,11 @@ module.exports = {
               }
             }
             if(cb) { return cb(null, votes); }
-            resolve(votes);
+            return resolve(votes);
           })
           .catch(function(err){
             if(cb) { return cb(err); }
-            reject(err);
+            return reject(err);
           });
       });
     },
@@ -119,10 +119,13 @@ module.exports = {
           obj.results = results;
           done = true;
         })
-        .catch(error => sails.log.error(error));
+        .catch(function(err) {
+          sails.log.error("error: ", err);
+          done = true;
+        });
 
       while(done === false) {
-        Deasync.sleep(10);
+        Deasync.sleep(1);
       }
       return obj;
     }

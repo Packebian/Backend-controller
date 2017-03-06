@@ -22,7 +22,7 @@ describe('MODEL Package', function() {
       Package.create(dataPackageM.packageFull)
         .then(function(res) {
           dataPackageM.packageFull.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -32,7 +32,7 @@ describe('MODEL Package', function() {
       Package.create(dataPackageM.packageMinimal)
         .then(function(res) {
           dataPackageM.packageMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -50,7 +50,7 @@ describe('MODEL Package', function() {
         .then(function(res) {
           // TODO: Test if res is an array of package
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -67,7 +67,7 @@ describe('MODEL Package', function() {
         .then(function(res) {
           // TODO: Test if res is a package
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -84,7 +84,7 @@ describe('MODEL Package', function() {
         .then(function(res) {
           // TODO: Test if res is an array of package
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
        .catch(done);
     });
@@ -101,7 +101,7 @@ describe('MODEL Package', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -111,7 +111,7 @@ describe('MODEL Package', function() {
       Package.destroy({id : [ dataPackageM.packageMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -124,7 +124,7 @@ describe('MODEL Package', function() {
   describe('data clearing', function() {
     /* Should remove everything that was created during the tests of package */
     it('should clear all data created during the tests of package', function (done) {
-      done();
+      return done();
     });
   });
 });

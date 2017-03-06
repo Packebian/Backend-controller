@@ -52,11 +52,11 @@ module.exports = {
     Sequence.next(User.tableName, function(err, num) {
       if (err) { return cb(err); }
       values.id = num;
-      cb();
+      return cb();
     });
   },
   beforeDestroy: function(values, cb){
     // TODO: Check ALL Foreign keys before deleting
-    cb();
+    return cb();
   }
 };

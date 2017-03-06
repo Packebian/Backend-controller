@@ -45,7 +45,7 @@ module.exports = {
               return reject(error);
             }
             if(cb) { return cb(null, data.value.num); }
-            resolve(data.value.num);
+            return resolve(data.value.num);
           }
         );
       });

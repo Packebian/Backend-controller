@@ -22,7 +22,7 @@ describe('MODEL Ticket', function() {
       Ticket.create(dataTicketM.ticketFull)
         .then(function(res) {
           dataTicketM.ticketFull.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -32,7 +32,7 @@ describe('MODEL Ticket', function() {
       Ticket.create(dataTicketM.ticketMinimal)
         .then(function(res) {
           dataTicketM.ticketMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -50,7 +50,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is an array of ticket
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -67,7 +67,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is a ticket
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -84,7 +84,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is an array of ticket
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
        .catch(done);
     });
@@ -101,7 +101,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -111,7 +111,7 @@ describe('MODEL Ticket', function() {
       Ticket.destroy({id : [ dataTicketM.ticketMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -124,7 +124,7 @@ describe('MODEL Ticket', function() {
   describe('data clearing', function() {
     /* Should remove everything that was created during the tests of ticket */
     it('should clear all data created during the tests of ticket', function (done) {
-      done();
+      return done();
     });
   });
 });

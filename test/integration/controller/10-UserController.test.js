@@ -32,7 +32,7 @@ describe('CONTROLLER user', function() {
 
           dataUserC.userFull.id = res.body.id // Retrieve id to destroy it later
 
-          done();
+          return done();
         });
     });
 
@@ -51,7 +51,7 @@ describe('CONTROLLER user', function() {
 
           dataUserC.userMinimal.id = res.body.id // Retrieve id to destroy it later
 
-          done();
+          return done();
         });
     });
 
@@ -64,7 +64,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -77,7 +77,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -91,7 +91,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -116,7 +116,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is an array of User
           res.body.should.be.instanceof(Array);
 
-          done();
+          return done();
         });
     });
   });
@@ -136,7 +136,7 @@ describe('CONTROLLER user', function() {
         .end(function(err, res) {
           if (err) return done(err);
 
-          done();
+          return done();
         });
     });
 
@@ -152,7 +152,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object).and.not.instanceof(Array);
 
-          done();
+          return done();
         });
     });
   });
@@ -175,7 +175,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object);
 
-          done();
+          return done();
         });
     });
 
@@ -188,7 +188,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -201,7 +201,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -214,7 +214,7 @@ describe('CONTROLLER user', function() {
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
   });
@@ -232,7 +232,7 @@ describe('CONTROLLER user', function() {
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
   });
@@ -246,7 +246,7 @@ describe('CONTROLLER user', function() {
     it('should clear all data created during the tests of /users', function (done) {
       User.destroy({id : [ dataUserC.userMinimal.id ]})
         .then(function(res) {
-          done();
+          return done();
         })
         .catch(done);
     });

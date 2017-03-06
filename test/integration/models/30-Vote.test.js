@@ -22,7 +22,7 @@ describe('MODEL Vote', function() {
       Vote.create(dataVoteM.voteFull)
         .then(function(res) {
           dataVoteM.voteFull.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -32,7 +32,7 @@ describe('MODEL Vote', function() {
       Vote.create(dataVoteM.voteMinimal)
         .then(function(res) {
           dataVoteM.voteMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -50,7 +50,7 @@ describe('MODEL Vote', function() {
         .then(function(res) {
           // TODO: Test if res is an array of vote
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -67,7 +67,7 @@ describe('MODEL Vote', function() {
         .then(function(res) {
           // TODO: Test if res is a vote
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -84,7 +84,7 @@ describe('MODEL Vote', function() {
         .then(function(res) {
           // TODO: Test if res is an array of vote
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
        .catch(done);
     });
@@ -101,7 +101,7 @@ describe('MODEL Vote', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -111,7 +111,7 @@ describe('MODEL Vote', function() {
       Vote.destroy({id : [ dataVoteM.voteMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -124,7 +124,7 @@ describe('MODEL Vote', function() {
   describe('data clearing', function() {
     /* Should remove everything that was created during the tests of vote */
     it('should clear all data created during the tests of vote', function (done) {
-      done();
+      return done();
     });
   });
 });
