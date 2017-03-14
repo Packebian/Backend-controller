@@ -14,10 +14,9 @@
 
 module.exports = function sendOK (data, options) {
 
-  // Get access to `req`, `res`, & `sails`
+  // Get access to `req` & `res`
   var req = this.req;
   var res = this.res;
-  var sails = req._sails;
 
   sails.log.silly("res.ok() :: Sending 200 (\"OK\") response");
 
