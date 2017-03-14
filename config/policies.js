@@ -27,7 +27,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  "*": ["isAuthenticated"], // Everything is restricted
 
   /***************************************************************************
   *                                                                          *
@@ -35,6 +35,12 @@ module.exports.policies = {
   * and its actions                                                          *
   *                                                                          *
   ***************************************************************************/
+
+  // Access to auth controller is open
+  "AuthController": {
+    "*": true
+  }
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions

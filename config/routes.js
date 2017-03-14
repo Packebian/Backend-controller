@@ -42,4 +42,6 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  "POST /login": {controller: "AuthController", action: "login"},
+  "POST /logout": {controller: "AuthController", action: "logout"}
 };
