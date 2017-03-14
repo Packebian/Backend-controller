@@ -4,13 +4,15 @@
     "es6" : true
   },
   "globals": {
-      "sails": true,
-      "Build": true,
-      "Message": true,
-      "Package": true,
-      "Sequence": true,
-      "Ticket": true,
-      "User": true,
-      "Vote": true,
+    "sails": true,
+    "Build": true,
+    "Message": true,
+    "Package": true,
+    "Sequence": true,
+    "Ticket": true,
+    "User": true,
+    "Vote": true,
+    "auth0Service": true,
+    "jwtService": true
     }
  }

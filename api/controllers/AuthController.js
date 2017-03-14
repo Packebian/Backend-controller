@@ -19,13 +19,10 @@ module.exports = {
     var type = req.param("type");
     var body = req.body;
 
-    sails.log.debug(type);
-    sails.log.debug(body);
-
     var promise;
     switch(type) {
       case "auth0":
-        promise = auth0Service.login(req.body.token);
+        promise = auth0Service.login(body.token);
         break;
       default:
         res.serverError("auth: authentication type doesn't exist");

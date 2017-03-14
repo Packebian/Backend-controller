@@ -28,13 +28,14 @@ module.exports = {
     var auth0Data;
     var options = {
       algorithm: [process.env.AUTH0_ALGO]
-    }
+    };
+
     /* Retrieve data in the given token */
     return jwtService.verifyManual(token, process.env.AUTH0_SECRET, options)
       /* Using the retrieved data, retrieve the user's information */
       .then(function(data){
         auth0Data = data;
-        return User.findOne({auth0_id: auth0Data.sub})
+        return User.findOne({idAuth0: auth0Data.sub});
       })
       /* Create the user in the database if necessary */
       .then(function(user){
@@ -49,19 +50,25 @@ module.exports = {
               form: {
                 "id_token": token
               }
-            }
+            };
             Request.post(infoReq, function(err, httpResponse, body){
+              /* Using the result create the user in the database */
               if(err) { reject(err); }
               if(httpResponse.statusCode !== 200) { reject(err); }
 
-              /* Using the reply from auth0, create the user and resolve or reject on result */
-              var userInfo = JSON.parse(body);
+              /* WARNING : THE API CAN RETURN 200 BUT WITH ERRORS IN THE BODY */
+              var userInfo;
+              try {
+                userInfo = JSON.parse(body);
+              } catch(error) {
+                reject(error); // the body of reply is not a JSON
+              }
               User.create({
                 username: userInfo.nickname,
                 lastname: userInfo.family_name,
                 firstname: userInfo.given_name,
                 email: userInfo.email,
-                auth0_id: auth0Data.sub
+                idAuth0: auth0Data.sub
               })
               .then(record => resolve(record))
               .catch(err => reject(err));
@@ -80,7 +87,7 @@ module.exports = {
       /* Handle callback in case of success */
       .then(function(result){
         if(cb){ return cb(null, result); }
-        return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve) {
           resolve(result);
         });
       })
@@ -92,4 +99,4 @@ module.exports = {
         });
       });
   }
-}
+};
