@@ -23,6 +23,7 @@
     "include-all": "^1.0.0",
     "jsonwebtoken": "^7.3.0",
     "rc": "1.0.1",
+    "request": "^2.81.0",
     "sails": "~0.12.11",
     "sails-disk": "~0.10.9",
     "sails-hook-eslint": "^1.0.3",

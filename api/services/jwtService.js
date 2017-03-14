@@ -41,7 +41,7 @@ module.exports = {
           return resolve(token);
         };
       }
-      return JWT.sign(
+      JWT.sign(
         payload,
         tokenSecret,
         options,
@@ -105,7 +105,7 @@ module.exports = {
           return resolve(decoded);
         };
       }
-      return JWT.verify(
+      JWT.verify(
         token,
         tokenSecret,
         options,
