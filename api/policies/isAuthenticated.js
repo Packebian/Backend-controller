@@ -25,9 +25,14 @@ module.exports = function isAuthenticated(req, res, next) {
         token = credentials;
       }
     }
+    if(!token){
+      errMessage = "Format is Authorization: Bearer [token]";
+    }
+  }else{
+    errMessage = "No Authorization header was found";
   }
 
-  if(!token) { res.forbidden(401, {err: errMessage}); }
+  if(!token) { return res.forbidden({err: errMessage}); }
 
   jwtService.verify(token)
       .then(next())

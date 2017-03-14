@@ -31,7 +31,7 @@ module.exports = {
 
     if(promise) {
       promise
-        .then(result => res.ok(result))
+        .then(result => res.ok({"token": result}))
         .catch(error => res.serverError(error));
     } else {
       res.serverError();
