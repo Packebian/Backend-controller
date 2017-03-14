@@ -5,6 +5,9 @@ var chai = require('chai');
 chai.should();
 
 var dataUserC = require('./10-User.dataC.js');
+var dataAuth = require('./00-Auth.dataC.js');
+
+var authHeader = 'Bearer ' +  dataAuth.token;
 
 /*
  * Tests of the User controller
@@ -22,6 +25,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userFull)
         .expect(201)
         .end(function(err, res) {
@@ -41,6 +45,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userMinimal)
         .expect(201)
         .end(function(err, res) {
@@ -60,6 +65,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
@@ -73,6 +79,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
@@ -87,6 +94,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
@@ -109,6 +117,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -132,6 +141,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -145,6 +155,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -167,6 +178,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userFullUpdated)
         .expect(200)
         .end(function(err, res) {
@@ -184,6 +196,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
@@ -197,6 +210,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
@@ -210,6 +224,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
@@ -229,6 +244,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .delete('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);

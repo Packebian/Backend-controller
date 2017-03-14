@@ -5,9 +5,11 @@ Every field is optionnal. Here is an example of a request updating the firstname
 
     + id: 1 (required, integer) - The user ID
 
-+ Request (application/json; charset=utf-8)
++ Request with body (application/json; charset=utf-8)
 
     + Attributes (UserReqPUT)
+
+    <!-- include(../auth/authHeader.md) -->
 
 + Response 200 (application/json; charset=utf-8)
 

@@ -5,9 +5,11 @@ Every field is optionnal. Here is an example of a request updating the value of 
 
     + id: 1 (required, integer) - The vote ID
 
-+ Request (application/json; charset=utf-8)
++ Request with body (application/json; charset=utf-8)
 
     + Attributes (VoteReqPUT)
+
+    <!-- include(../auth/authHeader.md) -->
 
 + Response 200 (application/json; charset=utf-8)
 

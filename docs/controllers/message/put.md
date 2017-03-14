@@ -5,9 +5,11 @@ Every field is optionnal. Here is an example of a request updating the content o
 
     + id: 1 (required, integer) - The message ID
 
-+ Request (application/json; charset=utf-8)
++ Request with body (application/json; charset=utf-8)
 
     + Attributes (MessageReqPUT)
+
+    <!-- include(../auth/authHeader.md) -->
 
 + Response 200 (application/json; charset=utf-8)
 
