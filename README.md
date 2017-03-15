@@ -1,8 +1,10 @@
 # Backend-Controller
 
-a [Sails](http://sailsjs.org) application
+a [Sails](http://sailsjs.org) application using [Blueprint API](http://sailsjs.com/documentation/reference/blueprint-api)
 
 [![Build Status](https://travis-ci.org/Packebian/Backend-controller.svg?branch=master)](https://travis-ci.org/Packebian/Backend-controller)
+
+
 
 
 ## Setup the environment
