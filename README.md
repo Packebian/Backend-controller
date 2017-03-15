@@ -42,6 +42,26 @@ export SAILS_SECRET="c9693b2d5572ffd96a79cae6a8453d57"
 ```
 This variable is set by sourcing the file `env.sh`.
 
+## auth0
+The Packebian app doesn't store password. Auth0 is thus used for authentication in Packebian.
+
+The auth0 secret is needed to check the signature of auth0 JWT sent the API to the `/login` call.
+```sh
+export AUTH0_SECRET: "secret"
+export AUTH0_ALGO: "HS256"
+export AUTH0_ENDPOINT: "https://packebian.eu.auth0.com"
+```
+
+## JWT
+After the auth0 token is checked and authentication is done, a JWT is given to the user. It is that token that must be used to call the API. The following parameters are used to configure these tokens.
+```sh
+export JWT_SECRET="secret"
+export JWT_LIFE=3600
+export JWT_ALGO="HS256"
+export JWT_ISSUER="packebian.com"
+export JWT_AUDIENCE="packebian.com"
+```
+
 
 ## Build & development
 The application is built and served with npm

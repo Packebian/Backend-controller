@@ -13,7 +13,7 @@ export MONGO_DB="packebian"
 export MONGO_USER="packebian"
 export MONGO_PASS="packebian123"
 
-export AUTH0_CLIENT_SECRET="secret2"
+export AUTH0_CLIENT_SECRET="secret"
 
 export JWT_SECRET="secret"
 export JWT_LIFE=600
