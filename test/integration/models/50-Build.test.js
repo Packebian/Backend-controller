@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataBuildM = require('./50-Build.dataM.js');
+var dataBuildM = require('./50-Build.dataM.js');
 
 /*
  * Tests of the Build model
@@ -19,7 +21,8 @@ describe('MODEL Build', function() {
     it('should create a build using a full json', function (done) {
       Build.create(dataBuildM.buildFull)
         .then(function(res) {
-          done();
+          dataBuildM.buildFull.id = res.id // Retrieve id to destroy it later
+          return done();
         })
         .catch(done);
     });
@@ -29,7 +32,7 @@ describe('MODEL Build', function() {
       Build.create(dataBuildM.buildMinimal)
         .then(function(res) {
           dataBuildM.buildMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -47,7 +50,7 @@ describe('MODEL Build', function() {
         .then(function(res) {
           // TODO: Test if res is an array of build
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -64,7 +67,7 @@ describe('MODEL Build', function() {
         .then(function(res) {
           // TODO: Test if res is a build
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -81,7 +84,7 @@ describe('MODEL Build', function() {
         .then(function(res) {
           // TODO: Test if res is an array of build
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
        .catch(done);
     });
@@ -98,7 +101,7 @@ describe('MODEL Build', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -108,7 +111,7 @@ describe('MODEL Build', function() {
       Build.destroy({id : [ dataBuildM.buildMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -121,7 +124,7 @@ describe('MODEL Build', function() {
   describe('data clearing', function() {
     /* Should remove everything that was created during the tests of build */
     it('should clear all data created during the tests of build', function (done) {
-      done();
+      return done();
     });
   });
 });

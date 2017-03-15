@@ -1,8 +1,13 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataUserC = require('./10-User.dataC.js');
+var dataUserC = require('./10-User.dataC.js');
+var dataAuth = require('./00-Auth.dataC.js');
+
+var authHeader = 'Bearer ' +  dataAuth.token;
 
 /*
  * Tests of the User controller
@@ -20,6 +25,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userFull)
         .expect(201)
         .end(function(err, res) {
@@ -28,7 +34,9 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object);
 
-          done();
+          dataUserC.userFull.id = res.body.id // Retrieve id to destroy it later
+
+          return done();
         });
     });
 
@@ -37,6 +45,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userMinimal)
         .expect(201)
         .end(function(err, res) {
@@ -47,7 +56,7 @@ describe('CONTROLLER user', function() {
 
           dataUserC.userMinimal.id = res.body.id // Retrieve id to destroy it later
 
-          done();
+          return done();
         });
     });
 
@@ -56,11 +65,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -69,11 +79,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -83,11 +94,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .post('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -105,6 +117,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -112,7 +125,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is an array of User
           res.body.should.be.instanceof(Array);
 
-          done();
+          return done();
         });
     });
   });
@@ -128,11 +141,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users')
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
 
-          done();
+          return done();
         });
     });
 
@@ -141,6 +155,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .get('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -148,7 +163,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object).and.not.instanceof(Array);
 
-          done();
+          return done();
         });
     });
   });
@@ -163,6 +178,7 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userFullUpdated)
         .expect(200)
         .end(function(err, res) {
@@ -171,7 +187,7 @@ describe('CONTROLLER user', function() {
           // TODO: Test if res is a User
           res.body.should.be.instanceof(Object);
 
-          done();
+          return done();
         });
     });
 
@@ -180,11 +196,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -193,11 +210,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userUsedUsername)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
 
@@ -206,11 +224,12 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .put('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .send(dataUserC.userWrongEmail)
         .expect(400)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
   });
@@ -225,10 +244,11 @@ describe('CONTROLLER user', function() {
       request(sails.hooks.http.app)
         .delete('/users/' + dataUserC.userFull.id)
         .set('Accept', 'application/json')
+        .set('Authorization', authHeader)
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          done();
+          return done();
         });
     });
   });
@@ -242,7 +262,7 @@ describe('CONTROLLER user', function() {
     it('should clear all data created during the tests of /users', function (done) {
       User.destroy({id : [ dataUserC.userMinimal.id ]})
         .then(function(res) {
-          done();
+          return done();
         })
         .catch(done);
     });

@@ -1,8 +1,10 @@
+"use strict";
+
 var request = require('supertest');
 var chai = require('chai');
 chai.should();
 
-dataTicketM = require('./20-Ticket.dataM.js');
+var dataTicketM = require('./20-Ticket.dataM.js');
 
 /*
  * Tests of the Ticket model
@@ -19,7 +21,8 @@ describe('MODEL Ticket', function() {
     it('should create a ticket using a full json', function (done) {
       Ticket.create(dataTicketM.ticketFull)
         .then(function(res) {
-          done();
+          dataTicketM.ticketFull.id = res.id // Retrieve id to destroy it later
+          return done();
         })
         .catch(done);
     });
@@ -29,7 +32,7 @@ describe('MODEL Ticket', function() {
       Ticket.create(dataTicketM.ticketMinimal)
         .then(function(res) {
           dataTicketM.ticketMinimal.id = res.id // Retrieve id to destroy it later
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -47,7 +50,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is an array of ticket
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -64,7 +67,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is a ticket
           res.should.be.instanceof(Object).and.not.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -81,7 +84,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           // TODO: Test if res is an array of ticket
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
        .catch(done);
     });
@@ -98,7 +101,7 @@ describe('MODEL Ticket', function() {
         .then(function(res) {
           res.should.be.instanceof(Array);
           res.length.should.be.equal(1);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -108,7 +111,7 @@ describe('MODEL Ticket', function() {
       Ticket.destroy({id : [ dataTicketM.ticketMinimal.id ]})
         .then(function(res) {
           res.should.be.instanceof(Array);
-          done();
+          return done();
         })
         .catch(done);
     });
@@ -121,7 +124,7 @@ describe('MODEL Ticket', function() {
   describe('data clearing', function() {
     /* Should remove everything that was created during the tests of ticket */
     it('should clear all data created during the tests of ticket', function (done) {
-      done();
+      return done();
     });
   });
 });

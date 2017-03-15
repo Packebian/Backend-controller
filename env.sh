@@ -12,3 +12,11 @@ export MONGO_PORT="27017"
 export MONGO_DB="packebian"
 export MONGO_USER="packebian"
 export MONGO_PASS="packebian123"
+
+export AUTH0_CLIENT_SECRET="secret"
+
+export JWT_SECRET="secret"
+export JWT_LIFE=600
+export JWT_ALGO="HS256"
+export JWT_ISSUER="packebian.com"
+export JWT_AUDIENCE="packebian.com"

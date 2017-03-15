@@ -2,25 +2,25 @@
   {
     "id": 1,
     "user": 1,
-    "message": "Good idea",
+    "content": "Good idea",
     "ticket": 3
   },
   {
     "id": 2,
     "user": 2,
-    "message": "Upvoted",
+    "content": "Upvoted",
     "ticket": 3
   },
   {
     "id": 3,
     "user": 1,
-    "message": "Netbeans isn't necessary in RICM. They use eclipse",
+    "content": "Netbeans isn't necessary in RICM. They use eclipse",
     "ticket": 4
   },
   {
     "id": 4,
     "user": 4,
-    "message": "Why not offering an alternative ?",
+    "content": "Why not offering an alternative ?",
     "ticket": 4
   }
 ]

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Connections
  * (sails.config.connections)
@@ -29,7 +30,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   localDiskDb: {
-    adapter: 'sails-disk'
+    adapter: "sails-disk"
   },
 
   /***************************************************************************
@@ -57,13 +58,13 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   packebianMongodb: {
-    adapter: 'sails-mongo',
+    adapter: "sails-mongo",
     host: process.env.MONGO_HOST,
     port: process.env.MONGO_PORT,
     database: process.env.MONGO_DB,
     user: process.env.MONGO_USER,
     password: process.env.MONGO_PASS
-  },
+  }
 
   /***************************************************************************
   *                                                                          *
